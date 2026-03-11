@@ -367,7 +367,6 @@ main {
 .cf-wrap { margin-bottom:20px; }
 .cf-row { display:flex; gap:8px; margin-bottom:8px; }
 
-/* ── NAME ROW & LOCK ── */
 .name-row {
   display:flex; align-items:center; gap:8px; margin-bottom:8px;
 }
@@ -533,30 +532,6 @@ textarea.cf-input { resize:vertical; min-height:78px; }
 .reply-content .rtime { font-family:'Share Tech Mono',monospace; font-size:9px; color:var(--dim); margin-left:6px; }
 .reply-content .rbody { font-size:13px; color:#c8a8a8; line-height:1.65; margin-top:3px; }
 
-/* ── NAME LOCK ── */
-.name-row { display:flex; gap:8px; align-items:center; margin-bottom:8px; position:relative; }
-.name-row .cf-input { flex:1; }
-.cf-input.locked {
-  opacity:.55; cursor:not-allowed; pointer-events:none;
-  border-color:rgba(80,0,0,.5);
-  background:rgba(10,0,0,.85);
-}
-.name-lock-info {
-  font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px;
-  color:var(--dim); margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-}
-.name-lock-info .lock-icon { color:var(--red3); font-size:12px; }
-.name-lock-info .lock-msg  { color:var(--dim); }
-.name-lock-info .lock-msg.frozen { color:#ff6060; }
-.rename-btn {
-  font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px;
-  padding:4px 12px; white-space:nowrap;
-  background:rgba(60,40,0,.4); border:1px solid var(--gold);
-  border-radius:4px; color:var(--gold2); cursor:pointer; transition:all .2s;
-}
-.rename-btn:hover { background:rgba(100,70,0,.55); box-shadow:0 0 8px rgba(240,192,96,.25); }
-.rename-btn:disabled { opacity:.35; cursor:not-allowed; pointer-events:none; border-color:var(--border); color:var(--dim); }
-
 .no-comments {
   text-align:center; padding:28px;
   font-family:'Share Tech Mono',monospace; font-size:11px;
@@ -645,7 +620,54 @@ textarea.cf-input { resize:vertical; min-height:78px; }
   50%      { box-shadow:0 0 46px rgba(231,76,60,.72), 0 0 72px rgba(139,0,0,.28), inset 0 0 10px rgba(0,0,0,.5); }
 }
 
+/* ── CREDITS NAV BTN ── */
+.nav-btn.credits-btn { color:var(--gold2); border-color:rgba(201,168,76,.3); }
+.nav-btn.credits-btn:hover { border-color:var(--gold2); background:rgba(60,42,0,.35); }
+.nav-btn.credits-btn.active { color:var(--gold2); border-color:var(--gold2); background:linear-gradient(135deg,rgba(90,62,0,.55),rgba(40,28,0,.85)); box-shadow:0 0 14px rgba(240,192,96,.3); }
+
+/* ── CREDITS PAGE ── */
+.cr-card {
+  background: var(--panel);
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 52px 44px 44px; text-align: center;
+  position: relative; overflow: hidden;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 44px rgba(0,0,0,.7);
+  max-width: 600px; margin: 0 auto;
+}
+.cr-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(to right, transparent, var(--gold), var(--gold2), var(--gold), transparent);
+}
+.cr-emoji { font-size: 46px; margin-bottom: 14px; }
+.cr-title {
+  font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:5px;
+  color: var(--gold2); margin-bottom: 20px;
+}
+.cr-text {
+  font-size: 16px; line-height: 1.9; color: var(--dim);
+  max-width: 440px; margin: 0 auto 32px;
+}
+.cr-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:28px; }
+.cr-tg-btn {
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(135deg,rgba(0,115,190,.22),rgba(0,70,140,.35));
+  border:1px solid rgba(0,136,204,.5); border-radius:8px; padding:12px 24px;
+  font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px;
+  color:#5bc8f5; text-decoration:none; transition:all .25s;
+}
+.cr-tg-btn:hover { background:linear-gradient(135deg,rgba(0,136,204,.35),rgba(0,80,160,.5)); border-color:#5bc8f5; box-shadow:0 0 16px rgba(0,136,204,.3); transform:translateY(-1px); }
+.cr-share-btn {
+  background:rgba(35,0,0,.6); border:1px solid var(--border);
+  border-radius:8px; padding:12px 24px;
+  font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px;
+  color:var(--dim); cursor:pointer; transition:all .25s;
+}
+.cr-share-btn:hover { border-color:var(--red3); color:var(--text); }
+.cr-sig { font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:3px; color:var(--dim); opacity:.6; }
+
 @media(max-width:600px){
+  .cr-card { padding:32px 18px; }
   .logo-text { font-size:36px; }
   .hero-card { padding:26px 16px; }
   .hero-card h1 { font-size:38px; }
@@ -702,6 +724,7 @@ textarea.cf-input { resize:vertical; min-height:78px; }
   <button class="nav-btn active" onclick="openPage('home', this)" id="nav-home">Страница</button>
   <button class="nav-btn"        onclick="openPage('important', this)" id="nav-important">Важное</button>
   <button class="nav-btn"        onclick="openPage('author', this)" id="nav-author">Автор</button>
+  <button class="nav-btn credits-btn" onclick="openPage('credits', this)" id="nav-credits">❤️ Поддержать</button>
 </nav>
 <div class="hdiv"></div>
 
@@ -753,163 +776,21 @@ textarea.cf-input { resize:vertical; min-height:78px; }
     <div class="advice-box">
       <p id="shame-advice">Будем честны: <span class="hl-red">большинство популярных плейсов — ловушки</span>. Они завлекают крутыми превью, а внутри — бесконечный гринд или кнопка «купи». Разработчики намеренно делают прогресс невозможным без доната. <span class="hl-green">Это не игры — это казино для детей.</span></p>
     </div>
-    <div class="shame-grid">
-      <div class="shame-card"><div class="sc-type">🐾 Pet симулятор</div><h4>Pet Simulator X/99</h4><p>Яйца с рандомными питомцами — это лутбоксы. Прогресс намеренно сломан без доната. Игра эксплуатирует детскую психологию.</p><span class="shame-verdict">// GAMBLING MECHANICS //</span></div>
-      <div class="shame-card"><div class="sc-type">🍎 Farming</div><h4>Blox Fruits</h4><p>Был неплох, но превратился в p2w болото. Топ-фрукты за реальные деньги дают огромное преимущество в PvP.</p><span class="shame-verdict">// PAY TO WIN //</span></div>
-      <div class="shame-card"><div class="sc-type">🖱️ Кликер</div><h4>Все «Simulator» игры</h4><p>Mining Sim, Lifting Sim и 1000 клонов. Кликай, собирай число, купи апгрейд. Никакого скилла, только гринд или деньги.</p><span class="shame-verdict">// ZERO SKILL //</span></div>
-      <div class="shame-card"><div class="sc-type">🏭 Тайкун</div><h4>Все Tycoon игры</h4><p>Стоишь на кнопке, ждёшь деньги. Gamepass за 500 робуксов даёт x10 скорость. Без него ты AFK машина.</p><span class="shame-verdict">// AFK WASTE //</span></div>
-      <div class="shame-card"><div class="sc-type">🐣 Adoption</div><h4>Adopt Me</h4><p>Рандомные питомцы, трейды эксплуатирующие детей. Социальная манипуляция в чистом виде.</p><span class="shame-verdict">// EXPLOIT MECHANIC //</span></div>
-      <div class="shame-card"><div class="sc-type">⚡ Аниме</div><h4>Anime Fighting Sim X</h4><p>Гриндь 10 часов ради одной способности или купи gamepass. Замаскированный кликер в аниме-обёртке.</p><span class="shame-verdict">// GRIND OR PAY //</span></div>
-      <div class="shame-card"><div class="sc-type">🧱 Dress-up</div><h4>Royale High</h4><p>Все предметы либо сезонные и недоступны, либо стоят кучу робуксов. Экономика создана чтобы ты тратил.</p><span class="shame-verdict">// FASHION TAX //</span></div>
-      <div class="shame-card"><div class="sc-type">🏃 Obby</div><h4>Все «Escape» Obby</h4><p>«Escape the school», «Escape the dentist» — один шаблон, тысячи копий. Прыжки по платформам ради значка.</p><span class="shame-verdict">// COPY PASTE //</span></div>
-      <div class="shame-card"><div class="sc-type">🚗 Гонки</div><h4>Vehicle Simulator</h4><p>Машины за деньги дают в разы лучшие характеристики. Без доната ты на «запорожце» среди Ferrari.</p><span class="shame-verdict">// PAY FOR SPEED //</span></div>
-      <div class="shame-card"><div class="sc-type">🥊 Файтинг</div><h4>Shindo Life</h4><p>Лучшие стили — через платный спин. Буквально лутбоксы. Потратишь часы или деньги ради хорошей способности.</p><span class="shame-verdict">// LOOTBOX DISGUISED //</span></div>
-      <div class="shame-card"><div class="sc-type">🍀 Рандом</div><h4>Sol's RNG / AUT RNG</h4><p>Нажми кнопку — получи рандом. Повтори 10 000 раз. Это не геймплей — это Skinner Box.</p><span class="shame-verdict">// DOPAMINE TRAP //</span></div>
-      <div class="shame-card"><div class="sc-type">🏠 RP</div><h4>Brookhaven</h4><p>RP без механик. Каждый второй «дом мечты» — за gamepass. Самое популярное ≠ хорошее.</p><span class="shame-verdict">// EMPTY CONTENT //</span></div>
-      <div class="shame-card"><div class="sc-type">🐾 Питомцы 2</div><h4>Bubble Gum Simulator</h4><p>Рандомные питомцы за робуксы с шансами скрытыми мелким шрифтом. Разработано чтобы дети не замечали траты.</p><span class="shame-verdict">// PREDATORY DESIGN //</span></div>
-      <div class="shame-card"><div class="sc-type">🌊 Волны</div><h4>Tower Defense Simulator</h4><p>Лучшие башни — за робуксы или гринд месяцами. Без доната ты аутсайдер в каждом лобби.</p><span class="shame-verdict">// PAY TO COMPETE //</span></div>
-      <div class="shame-card"><div class="sc-type">🧸 Ивенты</div><h4>Seasonal Event Trash</h4><p>Созданы к Хэллоуину/Рождеству с одной целью — продать ивентовые предметы. Закрываются через 2 недели.</p><span class="shame-verdict">// FOMO EXPLOITATION //</span></div>
-      <div class="shame-card"><div class="sc-type">💎 RPG</div><h4>Arcane Odyssey</h4><p>Хорошая основа убитая магазином. Платные бусты дают преимущество в PvP. Без доната ты аутсайдер в эндгейме.</p><span class="shame-verdict">// BROKEN ENDGAME //</span></div>
+    <div class="shame-grid" id="shame-grid"></div>
+
+    <div class="stitle" id="st-scam">🚨 Скам — не попадись</div>
+    <div class="advice-box">
+      <p id="scam-advice">Отдельная категория дна. <span class="hl-red">Эти плейсы созданы чтобы тебя обмануть</span> — украсть аккаунт, вытащить данные или просто потратить твоё время на заведомо ложное обещание. <span class="hl-green">Запомни: бесплатных робуксов не существует.</span></p>
     </div>
+    <div class="shame-grid" id="scam-grid"></div>
 
     <div class="stitle" id="st-good">🏆 Реально стоит играть</div>
     <div class="advice-box">
       <p id="good-advice">Игры где <span class="hl-green">скилл важнее кошелька</span>. Ты можешь быть лучшим без единого потраченного рубля — именно это делает игру настоящей игрой.</p>
     </div>
-    <div class="games-grid">
-      <div class="game-card t-pvp">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">⚔️ PvP Файтинг</div>
-        <h3>THE STRONGEST BATTLEGROUNDS</h3>
-        <p class="gc-desc">Лучший файтинг на Roblox. Аниме-способности, быстрые бои, огромный скилл-кепинг.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Чистый скилл</div><div class="pc-item">Много героев</div><div class="pc-item">Большой онлайн</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Токсичные игроки</div><div class="pc-item">Сложная кривая</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s5">★★★★★</span><span class="gc-score">// 5.0 — Топ выбор</span></div>
-      </div>
-      <div class="game-card t-shooter">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">🔫 Реалистичный шутер</div>
-        <h3>PHANTOM FORCES</h3>
-        <p class="gc-desc">Лучший шутер на платформе. Реальная баллистика, огромный арсенал, тактические карты.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Лучший gunplay</div><div class="pc-item">Много режимов</div><div class="pc-item">Честный баланс</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Старый движок</div><div class="pc-item">Иногда читеры</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s5">★★★★★</span><span class="gc-score">// 4.9 — Обязателен</span></div>
-      </div>
-      <div class="game-card t-shooter">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">🔫 Аркадный шутер</div>
-        <h3>ARSENAL</h3>
-        <p class="gc-desc">Gun Game на Roblox. Каждый убийство — новое оружие. Идеально для тренировки aim.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Быстрые матчи</div><div class="pc-item">Тренирует aim</div><div class="pc-item">Честный баланс</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Может надоесть</div><div class="pc-item">Иногда лагает</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.2 — Отличный</span></div>
-      </div>
-      <div class="game-card t-pvp">
-        <span class="gc-badge optional">~ КОСМЕТИКА</span>
-        <div class="gc-type">⚔️ Street PvP</div>
-        <h3>DA HOOD</h3>
-        <p class="gc-desc">Уличный RP с реальным PvP. Донат чисто косметический — победа зависит от скилла.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Открытый мир</div><div class="pc-item">Честный PvP</div><div class="pc-item">Большое комьюнити</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Очень токсично</div><div class="pc-item">Высокий порог</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.0 — Для смелых</span></div>
-      </div>
-      <div class="game-card t-horror">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">👻 Хоррор пазл</div>
-        <h3>DOORS</h3>
-        <p class="gc-desc">Один из лучших хоррор-опытов на Roblox. Уникальные монстры, атмосфера нагнетается с каждым шагом.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Отличная атмосфера</div><div class="pc-item">Уникальный дизайн</div><div class="pc-item">Кооп</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Рандом влияет</div><div class="pc-item">Быстро надоедает</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.3 — Хоррор топ</span></div>
-      </div>
-      <div class="game-card t-horror">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">👻 Backrooms хоррор</div>
-        <h3>APEIROPHOBIA</h3>
-        <p class="gc-desc">Длинный, атмосферный, местами по-настоящему пугающий. Один из лучших в жанре.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Реально страшно</div><div class="pc-item">Много уровней</div><div class="pc-item">Оригинальность</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Некоторые уровни скучны</div><div class="pc-item">Оптимизация</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.4 — Обязателен</span></div>
-      </div>
-      <div class="game-card t-stealth">
-        <span class="gc-badge optional">~ КОСМЕТИКА</span>
-        <div class="gc-type">🕵️ Стелс / Ограбление</div>
-        <h3>ENTRY POINT</h3>
-        <p class="gc-desc">Лучшая стелс-игра на Roblox. Ограбления с планированием, разные пути, командная работа.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Глубокий геймплей</div><div class="pc-item">Много стратегий</div><div class="pc-item">Без p2w</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Редкие обновления</div><div class="pc-item">Нужны друзья</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s5">★★★★★</span><span class="gc-score">// 4.8 — Скрытый шедевр</span></div>
-      </div>
-      <div class="game-card t-survival">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">🔬 Тактическое выживание</div>
-        <h3>COLD WAR (CW)</h3>
-        <p class="gc-desc">Командное тактическое выживание. Требует координации и стратегии.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Тактическая глубина</div><div class="pc-item">Командный геймплей</div><div class="pc-item">Честный баланс</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Нужна команда</div><div class="pc-item">Высокий порог</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.1 — С командой огонь</span></div>
-      </div>
-      <div class="game-card t-horror">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">👹 Асимметричный хоррор</div>
-        <h3>SURVIVE THE KILLER</h3>
-        <p class="gc-desc">Играй за выжившего или маньяка. С друзьями — одно из лучших переживаний на платформе.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Весело в компании</div><div class="pc-item">Разные убийцы</div><div class="pc-item">Честно</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Одному скучновато</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.0 — С друзьями 10/10</span></div>
-      </div>
-      <div class="game-card t-pvp">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">🥋 Мелее PvP</div>
-        <h3>COMBAT WARRIORS</h3>
-        <p class="gc-desc">Быстрый мелее-PvP. Комбо, парирования, уворот — нужен реальный скилл.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Огромный онлайн</div><div class="pc-item">Глубокая боёвка</div><div class="pc-item">Быстрый старт</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Очень токсично</div><div class="pc-item">Иногда читеры</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.2 — Мелее топ</span></div>
-      </div>
-      <div class="game-card t-stealth">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">🕵️ Детектив / Social</div>
-        <h3>MURDER MYSTERY 2</h3>
-        <p class="gc-desc">Убийца, шериф, невинные. Умение читать людей и блефовать решает исход.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Читаешь людей</div><div class="pc-item">Огромный онлайн</div><div class="pc-item">Легко войти</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Иногда читеры</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.0 — Социальный топ</span></div>
-      </div>
-      <div class="game-card t-shooter">
-        <span class="gc-badge free">✓ FREE TO WIN</span>
-        <div class="gc-type">🔫 Тактический FPS</div>
-        <h3>CRIMINALITY</h3>
-        <p class="gc-desc">Реалистичный тактический шутер с отдачей и укрытиями. Один из самых хардкорных шутеров на Roblox.</p>
-        <div class="pc-grid">
-          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Реальная тактика</div><div class="pc-item">Хардкор геймплей</div><div class="pc-item">Честный баланс</div></div>
-          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Сложно новичкам</div><div class="pc-item">Малый онлайн</div></div>
-        </div>
-        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.3 — Хардкор топ</span></div>
-      </div>
-    </div>
+
+    <!-- ✅ FIX: убраны захардкоженные карточки на русском. Теперь только динамический рендер. -->
+    <div class="games-grid" id="games-grid"></div>
 
     <div class="stitle" id="st-tips">💡 Как не попасть в ловушку</div>
     <div class="tips-list">
@@ -977,6 +858,23 @@ textarea.cf-input { resize:vertical; min-height:78px; }
     </div>
   </div>
 
+  <!-- PAGE: CREDITS -->
+  <div id="page-credits" class="page">
+    <div class="cr-card">
+      <div class="cr-emoji">💙</div>
+      <h2 class="cr-title" id="cr-title">ПОДДЕРЖАТЬ АВТОРА</h2>
+      <p class="cr-text" id="cr-text">Если хочешь поддержать автора монетой — напиши ему в Telegram, он подскажет как. Или просто поделись сайтом с друзьями — это уже огромная помощь.<br><br>Благодарю всех за поддержку 💙</p>
+      <div class="cr-btns">
+        <a class="cr-tg-btn" href="https://t.me/SiteAuthor" target="_blank">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#5bc8f5"><path d="M11.944 0A12 12 0 1 0 24 12 12.014 12.014 0 0 0 11.944 0zm4.97 7.667l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.91 14.204l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.13.834.801z"/></svg>
+          <span id="cr-tg-label">Написать в Telegram</span>
+        </a>
+        <button class="cr-share-btn" onclick="sharesite()">🔗 <span id="cr-share-label">Поделиться сайтом</span></button>
+      </div>
+      <div class="cr-sig">— YTFlorikHorrors</div>
+    </div>
+  </div>
+
 </main>
 
 <script>
@@ -1018,13 +916,69 @@ const T = {
       ['Играй с людьми','Даже средняя игра становится крутой в хорошей компании. Зови друзей!'],
     ],
     toasts:{like:'🔥 Лайк!',unlike:'Лайк убран',comment:'✓ Комментарий добавлен!',reply:'↩ Ответ добавлен!',rate:'✓ Оценка сохранена!',empty:'⚠ Напиши что-нибудь!',short:'⚠ Слишком коротко',langSet:'🇷🇺 Русский выбран',react:'Реакция добавлена!',nameLocked:'🔒 Ник заблокирован после первого коммента',nameChanged:'✓ Можешь ввести новый ник и отправить',nameFrozen:'❌ Ник уже был изменён — больше нельзя'},
-    namelock:{
-      locked:'Ник заблокирован — изменение 1 раз',
-      frozen:'Ник заморожен навсегда',
-      renameBtn:'✏️ ИЗМЕНИТЬ НИК',
-      changesLeft:'(осталось: ',
-    },
+    namelock:{locked:'Ник заблокирован — изменение 1 раз',frozen:'Ник заморожен навсегда',renameBtn:'✏️ ИЗМЕНИТЬ НИК',changesLeft:'(осталось: ',frozenBtn:'🔒 ЗАМОРОЖЕН'},
+    prosLabel:'✓ ПЛЮСЫ', consLabel:'✗ МИНУСЫ',
+    badgeLabels:{ free:'✓ FREE TO WIN', optional:'~ КОСМЕТИКА' },
+    stScam:'🚨 Скам — не попадись',
+    scamAdv:'Отдельная категория дна. <span class="hl-red">Эти плейсы созданы чтобы тебя обмануть</span> — украсть аккаунт, вытащить данные или просто потратить твоё время на заведомо ложное обещание. <span class="hl-green">Запомни: бесплатных робуксов не существует.</span>',
+    scamCards:[
+      {icon:'💸',type:'Скам',name:'Free Robux игры',desc:'«Сыграй 5 минут — получи 1000 робуксов». Никогда не работает. Либо фишинг аккаунта, либо просто ложь для накрутки посещений.',verdict:'// PHISHING TRAP //'},
+      {icon:'💇',type:'Скам',name:'Free Hair / Items',desc:'«Введи логин и пароль чтобы получить бесплатные волосы». Это кража аккаунта. Roblox никогда не раздаёт предметы через сторонние плейсы.',verdict:'// ACCOUNT STEALER //'},
+      {icon:'🎁',type:'Скам',name:'Obby for Prizes',desc:'«Пройди обби — получи награду». Награды нет. Просто накрутка визитов и вовлечённости для алгоритма Roblox.',verdict:'// FAKE REWARD //'},
+      {icon:'🔑',type:'Скам',name:'"Admin" игры',desc:'«Купи gamepass — получишь admin команды». Команды либо не работают, либо работают только в этом бессмысленном плейсе.',verdict:'// FAKE POWER //'},
+      {icon:'🤖',type:'Скам',name:'Hack / Exploit игры',desc:'«Скачай наш executor — взломай любую игру». Это вирус. 100% малварь которая крадёт твои данные или блокирует аккаунт Roblox.',verdict:'// MALWARE //'},
+      {icon:'🏆',type:'Скам',name:'Турнирные плейсы',desc:'«Участвуй в турнире — выиграй робуксы». Победителя нет. Либо победитель всегда один (друг создателя), либо приза не существует вообще.',verdict:'// FAKE TOURNAMENT //'},
+    ],
+    shameCards:[
+      {icon:'🐾',type:'Pet симулятор',name:'Pet Simulator X/99',desc:'Яйца с рандомными питомцами — это лутбоксы. Прогресс намеренно сломан без доната. Игра эксплуатирует детскую психологию.',verdict:'// GAMBLING MECHANICS //'},
+      {icon:'🍎',type:'Farming',name:'Blox Fruits',desc:'Был неплох, но превратился в p2w болото. Топ-фрукты за реальные деньги дают огромное преимущество в PvP.',verdict:'// PAY TO WIN //'},
+      {icon:'🖱️',type:'Кликер',name:'Все «Simulator» игры',desc:'Mining Sim, Lifting Sim и 1000 клонов. Кликай, собирай число, купи апгрейд. Никакого скилла, только гринд или деньги.',verdict:'// ZERO SKILL //'},
+      {icon:'🏭',type:'Тайкун',name:'Все Tycoon игры',desc:'Стоишь на кнопке, ждёшь деньги. Gamepass за 500 робуксов даёт x10 скорость. Без него ты AFK машина.',verdict:'// AFK WASTE //'},
+      {icon:'🐣',type:'Adoption',name:'Adopt Me',desc:'Рандомные питомцы, трейды эксплуатирующие детей. Социальная манипуляция в чистом виде.',verdict:'// EXPLOIT MECHANIC //'},
+      {icon:'⚡',type:'Аниме',name:'Anime Fighting Sim X',desc:'Гриндь 10 часов ради одной способности или купи gamepass. Замаскированный кликер в аниме-обёртке.',verdict:'// GRIND OR PAY //'},
+      {icon:'🧱',type:'Dress-up',name:'Royale High',desc:'Все предметы либо сезонные и недоступны, либо стоят кучу робуксов. Экономика создана чтобы ты тратил.',verdict:'// FASHION TAX //'},
+      {icon:'🏃',type:'Obby',name:'Все «Escape» Obby',desc:'«Escape the school», «Escape the dentist» — один шаблон, тысячи копий. Прыжки по платформам ради значка.',verdict:'// COPY PASTE //'},
+      {icon:'🚗',type:'Гонки',name:'Vehicle Simulator',desc:'Машины за деньги дают в разы лучшие характеристики. Без доната ты на «запорожце» среди Ferrari.',verdict:'// PAY FOR SPEED //'},
+      {icon:'🥊',type:'Файтинг',name:'Shindo Life',desc:'Лучшие стили — через платный спин. Буквально лутбоксы. Потратишь часы или деньги ради хорошей способности.',verdict:'// LOOTBOX DISGUISED //'},
+      {icon:'🍀',type:'Рандом',name:"Sol's RNG / AUT RNG",desc:'Нажми кнопку — получи рандом. Повтори 10 000 раз. Это не геймплей — это Skinner Box.',verdict:'// DOPAMINE TRAP //'},
+      {icon:'🏠',type:'RP',name:'Brookhaven',desc:'RP без механик. Каждый второй «дом мечты» — за gamepass. Самое популярное ≠ хорошее.',verdict:'// EMPTY CONTENT //'},
+      {icon:'🐾',type:'Питомцы 2',name:'Bubble Gum Simulator',desc:'Рандомные питомцы за робуксы с шансами скрытыми мелким шрифтом. Разработано чтобы дети не замечали траты.',verdict:'// PREDATORY DESIGN //'},
+      {icon:'🌊',type:'Волны',name:'Tower Defense Simulator',desc:'Лучшие башни — за робуксы или гринд месяцами. Без доната ты аутсайдер в каждом лобби.',verdict:'// PAY TO COMPETE //'},
+      {icon:'🧸',type:'Ивенты',name:'Seasonal Event Trash',desc:'Созданы к Хэллоуину/Рождеству с одной целью — продать ивентовые предметы. Закрываются через 2 недели.',verdict:'// FOMO EXPLOITATION //'},
+      {icon:'💎',type:'RPG',name:'Arcane Odyssey',desc:'Хорошая основа убитая магазином. Платные бусты дают преимущество в PvP. Без доната ты аутсайдер в эндгейме.',verdict:'// BROKEN ENDGAME //'},
+    ],
+    games:[
+      {type:'pvp',badge:'free',icon:'⚔️',genre:'PvP Файтинг',name:'THE STRONGEST BATTLEGROUNDS',desc:'Лучший файтинг на Roblox. Аниме-способности, быстрые бои, огромный скилл-кепинг.',pros:['Чистый скилл','Много героев','Большой онлайн'],cons:['Токсичные игроки','Сложная кривая'],stars:5,score:'5.0',label:'Топ выбор'},
+      {type:'shooter',badge:'free',icon:'🔫',genre:'Реалистичный шутер',name:'PHANTOM FORCES',desc:'Лучший шутер на платформе. Реальная баллистика, огромный арсенал, тактические карты.',pros:['Лучший gunplay','Много режимов','Честный баланс'],cons:['Старый движок','Иногда читеры'],stars:5,score:'4.9',label:'Обязателен'},
+      {type:'shooter',badge:'free',icon:'🔫',genre:'Аркадный шутер',name:'ARSENAL',desc:'Gun Game на Roblox. Каждое убийство — новое оружие. Идеально для тренировки aim.',pros:['Быстрые матчи','Тренирует aim','Честный баланс'],cons:['Может надоесть','Иногда лагает'],stars:4,score:'4.2',label:'Отличный'},
+      {type:'pvp',badge:'optional',icon:'⚔️',genre:'Street PvP',name:'DA HOOD',desc:'Уличный RP с реальным PvP. Донат чисто косметический — победа зависит от скилла.',pros:['Открытый мир','Честный PvP','Большое комьюнити'],cons:['Очень токсично','Высокий порог'],stars:4,score:'4.0',label:'Для смелых'},
+      {type:'horror',badge:'free',icon:'👻',genre:'Хоррор пазл',name:'DOORS',desc:'Один из лучших хоррор-опытов на Roblox. Уникальные монстры, атмосфера нагнетается с каждым шагом.',pros:['Отличная атмосфера','Уникальный дизайн','Кооп'],cons:['Рандом влияет','Быстро надоедает'],stars:4,score:'4.3',label:'Хоррор топ'},
+      {type:'horror',badge:'free',icon:'👻',genre:'Backrooms хоррор',name:'APEIROPHOBIA',desc:'Длинный, атмосферный, местами по-настоящему пугающий. Один из лучших в жанре.',pros:['Реально страшно','Много уровней','Оригинальность'],cons:['Некоторые уровни скучны','Оптимизация'],stars:4,score:'4.4',label:'Обязателен'},
+      {type:'horror',badge:'free',icon:'🩸',genre:'Хоррор выживание',name:'PRESSURE',desc:'Новый хит — глубоководный хоррор. Монстры с уникальным поведением, тёмные коридоры, постоянное напряжение. Один из лучших 2024.',pros:['Свежая атмосфера','Уникальные враги','Активные обновления'],cons:['Сложно новичкам','Рандом карт'],stars:5,score:'4.7',label:'Новый хит'},
+      {type:'horror',badge:'free',icon:'👺',genre:'Японский хоррор',name:'THE MIMIC',desc:'Хоррор основанный на японских городских легендах. Четыре главы, каждая страшнее предыдущей. Атмосфера топ.',pros:['Реально пугает','Сюжет','Бесплатно'],cons:['Некоторые главы слабее','Лаги в пиковые часы'],stars:4,score:'4.5',label:'Атмосфера 10/10'},
+      {type:'stealth',badge:'optional',icon:'🕵️',genre:'Стелс / Ограбление',name:'ENTRY POINT',desc:'Лучшая стелс-игра на Roblox. Ограбления с планированием, разные пути, командная работа.',pros:['Глубокий геймплей','Много стратегий','Без p2w'],cons:['Редкие обновления','Нужны друзья'],stars:5,score:'4.8',label:'Скрытый шедевр'},
+      {type:'survival',badge:'free',icon:'🔬',genre:'Тактическое выживание',name:'COLD WAR (CW)',desc:'Командное тактическое выживание. Требует координации и стратегии.',pros:['Тактическая глубина','Командный геймплей','Честный баланс'],cons:['Нужна команда','Высокий порог'],stars:4,score:'4.1',label:'С командой огонь'},
+      {type:'survival',badge:'free',icon:'❄️',genre:'Хардкор выживание',name:'DECAYING WINTER',desc:'Жёсткое выживание в постапоке. Голод, холод, зомби, предательство союзников. Самая хардкорная игра на платформе.',pros:['Глубокая механика','Реальный хардкор','Уникальный опыт'],cons:['Очень сложно','Токсичные союзники'],stars:5,score:'4.6',label:'Хардкор шедевр'},
+      {type:'horror',badge:'free',icon:'👹',genre:'Асимметричный хоррор',name:'SURVIVE THE KILLER',desc:'Играй за выжившего или маньяка. С друзьями — одно из лучших переживаний на платформе.',pros:['Весело в компании','Разные убийцы','Честно'],cons:['Одному скучновато'],stars:4,score:'4.0',label:'С друзьями 10/10'},
+      {type:'pvp',badge:'free',icon:'🥋',genre:'Мелее PvP',name:'COMBAT WARRIORS',desc:'Быстрый мелее-PvP. Комбо, парирования, уворот — нужен реальный скилл.',pros:['Огромный онлайн','Глубокая боёвка','Быстрый старт'],cons:['Очень токсично','Иногда читеры'],stars:4,score:'4.2',label:'Мелее топ'},
+      {type:'pvp',badge:'free',icon:'🚗',genre:'Open World PvP',name:'JAILBREAK',desc:'Классика платформы. Копы против преступников. Ограбления, погони, честный баланс без pay-to-win.',pros:['Открытый мир','Честный баланс','Постоянные обновления'],cons:['Устаревшая графика','Гринд для машин'],stars:4,score:'4.1',label:'Классика'},
+      {type:'horror',badge:'free',icon:'🐷',genre:'Хоррор выживание',name:'PIGGY',desc:'Сюжетный хоррор с несколькими концовками. Прячься, решай пазлы, выживай. Огромная история на 12+ глав.',pros:['Крутой сюжет','Много контента','Бесплатно'],cons:['Старая графика','Некоторые главы скучные'],stars:4,score:'4.0',label:'Сюжет топ'},
+      {type:'survival',badge:'free',icon:'🌪️',genre:'Казуальное выживание',name:'NATURAL DISASTER SURVIVAL',desc:'Пережи землетрясение, торнадо, кислотный дождь. Простые правила, огромный реплей. Идеально для новичков.',pros:['Легко войти','Много катастроф','Быстрые раунды'],cons:['Казуально','Рандом решает'],stars:3,score:'3.8',label:'Для новичков'},
+      {type:'stealth',badge:'free',icon:'🕵️',genre:'Детектив / Social',name:'MURDER MYSTERY 2',desc:'Убийца, шериф, невинные. Умение читать людей и блефовать решает исход.',pros:['Читаешь людей','Огромный онлайн','Легко войти'],cons:['Иногда читеры'],stars:4,score:'4.0',label:'Социальный топ'},
+      {type:'shooter',badge:'free',icon:'🔫',genre:'Тактический FPS',name:'CRIMINALITY',desc:'Реалистичный тактический шутер с отдачей и укрытиями. Один из самых хардкорных шутеров на Roblox.',pros:['Реальная тактика','Хардкор геймплей','Честный баланс'],cons:['Сложно новичкам','Малый онлайн'],stars:4,score:'4.3',label:'Хардкор топ'},
+      {type:'horror',badge:'free',icon:'🏃',genre:'Хоррор chase',name:'EVADE',desc:'Убегай от SCP-подобных существ. Быстрый, динамичный, с кучей режимов. Отлично с компанией.',pros:['Динамично','Много режимов','Весело в группе'],cons:['Одному скучновато','Простой геймплей'],stars:4,score:'3.9',label:'Движуха гарантирована'},
+    ],
     anonName:'Анонимный игрок',
+    credits:{
+      nav:'❤️ Поддержать',
+      title:'ПОДДЕРЖАТЬ АВТОРА',
+      text:'Если хочешь поддержать автора монетой — напиши ему в Telegram, он подскажет как. Или просто поделись сайтом с друзьями — это уже огромная помощь.\n\nБлагодарю всех за поддержку 💙',
+      tg:'Написать в Telegram',
+      share:'Поделиться сайтом',
+      sig:'— YTFlorikHorrors',
+      toastShare:'🔗 Ссылка скопирована!',
+      toastShareFail:'🔗 Скопируй ссылку из адресной строки',
+    },
   },
   en: {
     nav:       ['About','Important','Author'],
@@ -1061,13 +1015,69 @@ const T = {
       ['Play with people','Even an average game becomes great with good company. Invite friends!'],
     ],
     toasts:{like:'🔥 Liked!',unlike:'Like removed',comment:'✓ Comment added!',reply:'↩ Reply added!',rate:'✓ Rating saved!',empty:'⚠ Write something!',short:'⚠ Too short',langSet:'🇬🇧 English selected',react:'Reaction added!',nameLocked:'🔒 Nickname locked after first comment',nameChanged:'✓ Enter a new nickname and submit',nameFrozen:'❌ Nickname already changed — no more changes'},
-    namelock:{
-      locked:'Nickname locked — 1 change allowed',
-      frozen:'Nickname frozen forever',
-      renameBtn:'✏️ CHANGE NAME',
-      changesLeft:'(left: ',
-    },
+    namelock:{locked:'Nickname locked — 1 change allowed',frozen:'Nickname frozen forever',renameBtn:'✏️ CHANGE NAME',changesLeft:'(left: ',frozenBtn:'🔒 FROZEN'},
+    prosLabel:'✓ PROS', consLabel:'✗ CONS',
+    badgeLabels:{free:'✓ FREE TO WIN',optional:'~ COSMETIC'},
+    stScam:'🚨 Scams — don\'t get caught',
+    scamAdv:'A special category of garbage. <span class="hl-red">These places are built to deceive you</span> — steal your account, grab your data, or waste your time with a fake promise. <span class="hl-green">Remember: free Robux does not exist.</span>',
+    scamCards:[
+      {icon:'💸',type:'Scam',name:'Free Robux games',desc:'"Play 5 minutes — get 1000 Robux." Never works. Either phishing for your account or just lying to inflate visit counts.',verdict:'// PHISHING TRAP //'},
+      {icon:'💇',type:'Scam',name:'Free Hair / Items',desc:'"Enter your login and password to get free hair." This steals your account. Roblox never gives items through third-party places.',verdict:'// ACCOUNT STEALER //'},
+      {icon:'🎁',type:'Scam',name:'Obby for Prizes',desc:'"Finish the obby — get a reward." There is no reward. Just inflating visit counts and engagement for the Roblox algorithm.',verdict:'// FAKE REWARD //'},
+      {icon:'🔑',type:'Scam',name:'"Admin" games',desc:'"Buy the gamepass — get admin commands." Commands either don\'t work or only work in this pointless place.',verdict:'// FAKE POWER //'},
+      {icon:'🤖',type:'Scam',name:'Hack / Exploit games',desc:'"Download our executor — hack any game." It\'s malware. 100% steals your data or gets your Roblox account banned.',verdict:'// MALWARE //'},
+      {icon:'🏆',type:'Scam',name:'Tournament places',desc:'"Join the tournament — win Robux." There is no winner. Either the creator\'s friend always wins, or the prize never existed.',verdict:'// FAKE TOURNAMENT //'},
+    ],
+    shameCards:[
+      {icon:'🐾',type:'Pet Simulator',name:'Pet Simulator X/99',desc:'Random pet eggs are lootboxes. Progress is deliberately broken without donating. The game exploits children\'s psychology.',verdict:'// GAMBLING MECHANICS //'},
+      {icon:'🍎',type:'Farming',name:'Blox Fruits',desc:'Was decent, but turned into a p2w swamp. Top fruits cost real money and give a huge PvP advantage.',verdict:'// PAY TO WIN //'},
+      {icon:'🖱️',type:'Clicker',name:'All "Simulator" games',desc:'Mining Sim, Lifting Sim and 1000 clones. Click, collect numbers, buy upgrades. No skill — just grind or pay.',verdict:'// ZERO SKILL //'},
+      {icon:'🏭',type:'Tycoon',name:'All Tycoon games',desc:'Stand on a button, wait for money. A 500 Robux gamepass gives x10 speed. Without it you\'re an AFK machine.',verdict:'// AFK WASTE //'},
+      {icon:'🐣',type:'Adoption',name:'Adopt Me',desc:'Random pets, trades that exploit children. Pure social manipulation.',verdict:'// EXPLOIT MECHANIC //'},
+      {icon:'⚡',type:'Anime',name:'Anime Fighting Sim X',desc:'Grind 10 hours for one ability or buy the gamepass. A disguised clicker in an anime wrapper.',verdict:'// GRIND OR PAY //'},
+      {icon:'🧱',type:'Dress-up',name:'Royale High',desc:'All items are either seasonal and gone, or cost tons of Robux. The economy is designed to make you spend.',verdict:'// FASHION TAX //'},
+      {icon:'🏃',type:'Obby',name:'All "Escape" Obbies',desc:'"Escape the school", "Escape the dentist" — one template, thousands of copies. Platforming for a badge.',verdict:'// COPY PASTE //'},
+      {icon:'🚗',type:'Racing',name:'Vehicle Simulator',desc:'Paid cars have far better stats. Without donating you\'re in a go-kart among Ferraris.',verdict:'// PAY FOR SPEED //'},
+      {icon:'🥊',type:'Fighting',name:'Shindo Life',desc:'Best styles locked behind paid spins. Literally lootboxes. Spend hours or money for a good ability.',verdict:'// LOOTBOX DISGUISED //'},
+      {icon:'🍀',type:'RNG',name:"Sol's RNG / AUT RNG",desc:'Press button, get random. Repeat 10,000 times. This isn\'t gameplay — it\'s a Skinner Box.',verdict:'// DOPAMINE TRAP //'},
+      {icon:'🏠',type:'RP',name:'Brookhaven',desc:'RP with no mechanics. Every other "dream house" costs a gamepass. Most popular ≠ good.',verdict:'// EMPTY CONTENT //'},
+      {icon:'🐾',type:'Pets 2',name:'Bubble Gum Simulator',desc:'Random pets for Robux with odds hidden in fine print. Designed so kids don\'t notice the spending.',verdict:'// PREDATORY DESIGN //'},
+      {icon:'🌊',type:'Waves',name:'Tower Defense Simulator',desc:'Best towers cost Robux or months of grinding. Without donating you\'re an outsider in every lobby.',verdict:'// PAY TO COMPETE //'},
+      {icon:'🧸',type:'Events',name:'Seasonal Event Trash',desc:'Built for Halloween/Christmas with one goal — sell event items. Gone in 2 weeks.',verdict:'// FOMO EXPLOITATION //'},
+      {icon:'💎',type:'RPG',name:'Arcane Odyssey',desc:'Good foundation ruined by the shop. Paid boosts give PvP advantage. Without donating you\'re an endgame outsider.',verdict:'// BROKEN ENDGAME //'},
+    ],
+    games:[
+      {type:'pvp',badge:'free',icon:'⚔️',genre:'PvP Fighter',name:'THE STRONGEST BATTLEGROUNDS',desc:'Best fighter on Roblox. Anime abilities, fast fights, massive skill ceiling.',pros:['Pure skill','Many heroes','Huge playerbase'],cons:['Toxic players','Steep curve'],stars:5,score:'5.0',label:'Top pick'},
+      {type:'shooter',badge:'free',icon:'🔫',genre:'Realistic Shooter',name:'PHANTOM FORCES',desc:'Best shooter on the platform. Real ballistics, massive arsenal, tactical maps.',pros:['Best gunplay','Many modes','Fair balance'],cons:['Old engine','Occasional cheaters'],stars:5,score:'4.9',label:'Must play'},
+      {type:'shooter',badge:'free',icon:'🔫',genre:'Arcade Shooter',name:'ARSENAL',desc:'Gun Game on Roblox. Every kill gives a new weapon. Perfect for training your aim.',pros:['Fast matches','Trains aim','Fair balance'],cons:['Gets repetitive','Occasional lag'],stars:4,score:'4.2',label:'Great choice'},
+      {type:'pvp',badge:'optional',icon:'⚔️',genre:'Street PvP',name:'DA HOOD',desc:'Street RP with real PvP. Donation is purely cosmetic — winning depends on skill.',pros:['Open world','Fair PvP','Big community'],cons:['Very toxic','High barrier'],stars:4,score:'4.0',label:'For the brave'},
+      {type:'horror',badge:'free',icon:'👻',genre:'Horror Puzzle',name:'DOORS',desc:'One of the best horror experiences on Roblox. Unique monsters, atmosphere builds with every door.',pros:['Great atmosphere','Unique design','Co-op'],cons:['RNG matters','Gets old fast'],stars:4,score:'4.3',label:'Horror top'},
+      {type:'horror',badge:'free',icon:'👻',genre:'Backrooms Horror',name:'APEIROPHOBIA',desc:'Long, atmospheric, genuinely scary in places. Tons of content, constant updates.',pros:['Actually scary','Many levels','Original'],cons:['Some levels boring','Optimization'],stars:4,score:'4.4',label:'Must play'},
+      {type:'horror',badge:'free',icon:'🩸',genre:'Horror Survival',name:'PRESSURE',desc:'New hit — deep-sea horror. Monsters with unique behaviour, dark corridors, constant tension. One of the best of 2024.',pros:['Fresh atmosphere','Unique enemies','Active updates'],cons:['Hard for newbies','RNG maps'],stars:5,score:'4.7',label:'New hit'},
+      {type:'horror',badge:'free',icon:'👺',genre:'Japanese Horror',name:'THE MIMIC',desc:'Horror based on Japanese urban legends. Four chapters, each scarier than the last. Peak atmosphere.',pros:['Actually scary','Has a story','Free'],cons:['Some chapters weaker','Peak-hour lag'],stars:4,score:'4.5',label:'Atmosphere 10/10'},
+      {type:'stealth',badge:'optional',icon:'🕵️',genre:'Stealth / Heist',name:'ENTRY POINT',desc:'Best stealth game on Roblox. Heists with planning, multiple routes, teamwork.',pros:['Deep gameplay','Many strategies','No p2w'],cons:['Rare updates','Needs friends'],stars:5,score:'4.8',label:'Hidden gem'},
+      {type:'survival',badge:'free',icon:'🔬',genre:'Tactical Survival',name:'COLD WAR (CW)',desc:'Team-based tactical survival. Requires coordination and strategy.',pros:['Tactical depth','Team gameplay','Fair balance'],cons:['Needs a team','High barrier'],stars:4,score:'4.1',label:'Great with squad'},
+      {type:'survival',badge:'free',icon:'❄️',genre:'Hardcore Survival',name:'DECAYING WINTER',desc:'Brutal post-apocalyptic survival. Hunger, cold, zombies, ally betrayal. The most hardcore game on the platform.',pros:['Deep mechanics','Real hardcore','Unique experience'],cons:['Very hard','Toxic allies'],stars:5,score:'4.6',label:'Hardcore masterpiece'},
+      {type:'horror',badge:'free',icon:'👹',genre:'Asymmetric Horror',name:'SURVIVE THE KILLER',desc:'Play as survivor or killer. With friends — one of the best experiences on the platform.',pros:['Fun with friends','Various killers','Fair'],cons:['Boring solo'],stars:4,score:'4.0',label:'10/10 with friends'},
+      {type:'pvp',badge:'free',icon:'🥋',genre:'Melee PvP',name:'COMBAT WARRIORS',desc:'Fast melee PvP. Combos, parries, dodge — real skill required.',pros:['Huge playerbase','Deep combat','Quick start'],cons:['Very toxic','Occasional cheaters'],stars:4,score:'4.2',label:'Melee top'},
+      {type:'pvp',badge:'free',icon:'🚗',genre:'Open World PvP',name:'JAILBREAK',desc:'Platform classic. Cops vs criminals. Robberies, chases, fair balance with no pay-to-win.',pros:['Open world','Fair balance','Constant updates'],cons:['Dated graphics','Car grind'],stars:4,score:'4.1',label:'Classic'},
+      {type:'horror',badge:'free',icon:'🐷',genre:'Story Horror',name:'PIGGY',desc:'Story horror with multiple endings. Hide, solve puzzles, survive. A huge story spanning 12+ chapters.',pros:['Great story','Lots of content','Free'],cons:['Old graphics','Some chapters slow'],stars:4,score:'4.0',label:'Story top'},
+      {type:'survival',badge:'free',icon:'🌪️',genre:'Casual Survival',name:'NATURAL DISASTER SURVIVAL',desc:'Survive earthquakes, tornadoes, acid rain. Simple rules, massive replayability. Perfect for newcomers.',pros:['Easy to start','Many disasters','Quick rounds'],cons:['Casual','RNG decides'],stars:3,score:'3.8',label:'For newcomers'},
+      {type:'stealth',badge:'free',icon:'🕵️',genre:'Detective / Social',name:'MURDER MYSTERY 2',desc:'Murderer, sheriff, innocents. Reading people and bluffing decides the outcome.',pros:['Read people','Huge playerbase','Easy to join'],cons:['Occasional cheaters'],stars:4,score:'4.0',label:'Social top'},
+      {type:'shooter',badge:'free',icon:'🔫',genre:'Tactical FPS',name:'CRIMINALITY',desc:'Realistic tactical shooter with recoil and cover. One of the most hardcore shooters on Roblox.',pros:['Real tactics','Hardcore gameplay','Fair balance'],cons:['Hard for newbies','Small playerbase'],stars:4,score:'4.3',label:'Hardcore top'},
+      {type:'horror',badge:'free',icon:'🏃',genre:'Horror Chase',name:'EVADE',desc:'Run from SCP-like creatures. Fast, dynamic, lots of modes. Great with a group.',pros:['Dynamic','Many modes','Fun in groups'],cons:['Boring solo','Simple gameplay'],stars:4,score:'3.9',label:'Action guaranteed'},
+    ],
     anonName:'Anonymous player',
+    credits:{
+      nav:'❤️ Support',
+      title:'SUPPORT THE AUTHOR',
+      text:'If you want to support the author — message him on Telegram, he\'ll let you know how. Or just share the site with your friends — that\'s already a huge help.\n\nThank you everyone for the support 💙',
+      tg:'Message on Telegram',
+      share:'Share the site',
+      sig:'— YTFlorikHorrors',
+      toastShare:'🔗 Link copied!',
+      toastShareFail:'🔗 Copy the link from the address bar',
+    },
   }
 };
 
@@ -1091,19 +1101,11 @@ let lang         = 'ru';
 let selectedStar = 0;
 let selectedAv   = AVATARS[0];
 
-/* ── STORAGE ─────────────────────────────────────────────
-   FIX: Отдельные функции load/save/remove.
-   save(key, null) раньше писал строку "null" → при чтении
-   JSON.parse("null") возвращал null, но если браузер
-   кешировал ошибку — ключ оставался. Теперь используем
-   явный removeItem() чтобы гарантированно удалять ключи.
-─────────────────────────────────────────────────────────── */
 function load(k, def) {
   try {
     const v = localStorage.getItem(k);
     if (v === null) return def;
     const parsed = JSON.parse(v);
-    // FIX: если в storage осталась строка "null" — считаем как отсутствие
     if (parsed === null) return def;
     return parsed;
   } catch { return def; }
@@ -1115,7 +1117,6 @@ function remove(k) {
   try { localStorage.removeItem(k); } catch {}
 }
 
-/* ── TOAST ─────────────────────────────────────────────── */
 let toastTimer;
 function toast(msg) {
   const el = document.getElementById('toast');
@@ -1125,7 +1126,6 @@ function toast(msg) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
 }
 
-/* ── PAGE NAV ───────────────────────────────────────────── */
 function openPage(name, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -1134,7 +1134,6 @@ function openPage(name, btn) {
   window.scrollTo({ top:0, behavior:'smooth' });
 }
 
-/* ── LANGUAGE ───────────────────────────────────────────── */
 function openLangOverlay() {
   const ol = document.getElementById('lang-overlay');
   ol.style.display = 'flex';
@@ -1166,6 +1165,8 @@ function applyLang() {
   document.getElementById('st-good').textContent    = t.stGood;
   document.getElementById('st-tips').textContent    = t.stTips;
   document.getElementById('st-comm').textContent    = t.stComm;
+  document.getElementById('st-scam').textContent    = t.stScam;
+  document.getElementById('scam-advice').innerHTML  = t.scamAdv;
   document.getElementById('shame-advice').innerHTML = t.shameAdv;
   document.getElementById('good-advice').innerHTML  = t.goodAdv;
   [1,2,3,4,5].forEach(i => {
@@ -1187,9 +1188,72 @@ function applyLang() {
   renderBars();
   renderComments();
   applyNameLock();
+  renderShame();
+  renderGames();
+  applyCredits();
 }
 
-/* ── AVATAR PICKER ──────────────────────────────────────── */
+function applyCredits() {
+  const c = T[lang].credits;
+  document.getElementById('nav-credits').textContent  = c.nav;
+  document.getElementById('cr-title').textContent     = c.title;
+  document.getElementById('cr-text').innerHTML        = c.text.replace(/\n/g,'<br>');
+  document.getElementById('cr-tg-label').textContent  = c.tg;
+  document.getElementById('cr-share-label').textContent = c.share;
+  document.getElementById('cr-sig').textContent       = c.sig;
+}
+
+function sharesite() {
+  const c = T[lang].credits;
+  if (navigator.share) {
+    navigator.share({ title: 'YTFlorikHorrors | Roblox Guide', url: location.href });
+  } else {
+    navigator.clipboard.writeText(location.href).then(() => {
+      toast(c.toastShare);
+    }).catch(() => {
+      toast(c.toastShareFail);
+    });
+  }
+}
+
+function renderShame() {
+  const t = T[lang];
+  const buildCard = c => `
+    <div class="shame-card">
+      <div class="sc-type">${c.icon} ${c.type}</div>
+      <h4>${c.name}</h4>
+      <p>${c.desc}</p>
+      <span class="shame-verdict">${c.verdict}</span>
+    </div>`;
+  document.getElementById('shame-grid').innerHTML = t.shameCards.map(buildCard).join('');
+  document.getElementById('scam-grid').innerHTML  = t.scamCards.map(buildCard).join('');
+}
+
+function renderGames() {
+  const t = T[lang];
+  const starsFull = s => '★'.repeat(s) + '☆'.repeat(5-s);
+  document.getElementById('games-grid').innerHTML = t.games.map(g => {
+    const badgeLabel = t.badgeLabels[g.badge];
+    const pros = g.pros.map(p => `<div class="pc-item">${p}</div>`).join('');
+    const cons = g.cons.map(c => `<div class="pc-item">${c}</div>`).join('');
+    return `
+    <div class="game-card t-${g.type}">
+      <span class="gc-badge ${g.badge}">${badgeLabel}</span>
+      <div class="gc-type">${g.icon} ${g.genre}</div>
+      <h3>${g.name}</h3>
+      <p class="gc-desc">${g.desc}</p>
+      <div class="pc-grid">
+        <div class="pc-col pros"><div class="pc-title">${t.prosLabel}</div>${pros}</div>
+        <div class="pc-col cons"><div class="pc-title">${t.consLabel}</div>${cons}</div>
+      </div>
+      <div class="gc-rating">
+        <span class="gc-stars s${g.stars}">${starsFull(g.stars)}</span>
+        <span class="gc-score">// ${g.score} — ${g.label}</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function initAvatarPicker() {
   const grid = document.getElementById('av-pick');
   grid.innerHTML = '';
@@ -1210,7 +1274,6 @@ function initAvatarPicker() {
   });
 }
 
-/* ── RATINGS ────────────────────────────────────────────── */
 function initStars() {
   const row = document.getElementById('star-row');
   row.querySelectorAll('span').forEach(s => {
@@ -1256,10 +1319,8 @@ function renderBars() {
   }).join('');
 }
 
-/* ── COMMENTS ───────────────────────────────────────────── */
 function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-// Защита от двойного клика — блокируем кнопку на 1.5с после отправки
 let submitLocked = false;
 function timeAgo(ts) {
   const m = Math.floor((Date.now()-ts)/60000);
@@ -1271,17 +1332,7 @@ function timeAgo(ts) {
 }
 function randomColor() { return AV_COLORS[Math.floor(Math.random()*AV_COLORS.length)]; }
 
-/* ── NAME LOCK ──────────────────────────────────────────────
-   Логика:
-   - hasPosted     : false → true после первого коммента
-   - nameChangesLeft: 1 → 0 после использования переименования
-   - Состояния поля:
-     • Не постил → поле открыто, кнопка «Изменить» скрыта
-     • Постил, changesLeft=1 → поле заблокировано, кнопка видна
-     • Постил, changesLeft=0 → поле заблокировано, кнопка отключена (заморожен)
-     • В режиме редактирования (renaming=true) → поле открыто, ник не сохранён до отправки
-─────────────────────────────────────────────────────────── */
-let renaming = false; // флаг: пользователь сейчас меняет ник
+let renaming = false;
 
 function applyNameLock() {
   const hasPosted      = load('hasPosted', false);
@@ -1294,7 +1345,6 @@ function applyNameLock() {
   const t              = T[lang];
 
   if (!hasPosted) {
-    // Ещё не постил — ник свободен
     inp.classList.remove('locked');
     inp.removeAttribute('disabled');
     renameBtn.style.display = 'none';
@@ -1303,11 +1353,9 @@ function applyNameLock() {
     return;
   }
 
-  // Уже постил — восстанавливаем сохранённый ник в поле
   if (!renaming && lockedName) inp.value = lockedName;
 
   if (changesLeft > 0 && !renaming) {
-    // Заблокирован, но можно изменить 1 раз
     inp.classList.add('locked');
     inp.setAttribute('disabled', '');
     renameBtn.style.display   = '';
@@ -1317,17 +1365,15 @@ function applyNameLock() {
     lockMsg.className         = 'lock-msg';
     lockMsg.textContent       = t.namelock.locked;
   } else if (changesLeft <= 0 && !renaming) {
-    // Заморожен навсегда
     inp.classList.add('locked');
     inp.setAttribute('disabled', '');
     renameBtn.style.display   = '';
     renameBtn.disabled        = true;
-    renameBtn.innerHTML       = `🔒 ЗАМОРОЖЕН`;
+    renameBtn.innerHTML       = t.namelock.frozenBtn;
     lockInfo.style.display    = 'flex';
     lockMsg.className         = 'lock-msg frozen';
     lockMsg.textContent       = t.namelock.frozen;
   } else if (renaming) {
-    // Режим редактирования ника
     inp.classList.remove('locked');
     inp.removeAttribute('disabled');
     inp.focus();
@@ -1344,28 +1390,24 @@ function unlockName() {
   if (!hasPosted || changesLeft <= 0) return;
   renaming = true;
   const inp = document.getElementById('cf-name');
-  inp.value = ''; // очищаем чтобы пользователь ввёл новый
+  inp.value = '';
   applyNameLock();
   toast(T[lang].toasts.nameChanged);
 }
 
 function submitComment() {
-  if (submitLocked) return; // двойной клик — игнорируем
+  if (submitLocked) return;
   const t = T[lang];
   const inp          = document.getElementById('cf-name');
   const hasPosted    = load('hasPosted', false);
   const changesLeft  = load('nameChangesLeft', 1);
 
-  // Определяем имя
   let name;
   if (!hasPosted) {
-    // Первый раз — берём из поля
     name = inp.value.trim() || t.anonName;
   } else if (renaming) {
-    // Меняем ник — берём из поля, уменьшаем счётчик
     name = inp.value.trim() || t.anonName;
   } else {
-    // Уже постил, не меняет ник — берём сохранённый
     name = load('lockedName', '') || t.anonName;
   }
 
@@ -1373,14 +1415,11 @@ function submitComment() {
   if (!text)         { toast(t.toasts.empty); return; }
   if (text.length<3) { toast(t.toasts.short); return; }
 
-  // Блокируем кнопку — защита от двойного клика
   submitLocked = true;
   const cfBtn = document.getElementById('cf-btn');
   if (cfBtn) { cfBtn.disabled = true; cfBtn.style.opacity = '0.5'; }
 
   const comments = load('comments',[]);
-
-  // Дополнительная защита: проверяем нет ли уже комментария с таким же текстом за последние 3 секунды
   const now = Date.now();
   const isDuplicate = comments.length > 0 &&
     comments[0].text === text.slice(0,500) &&
@@ -1396,7 +1435,6 @@ function submitComment() {
     save('comments', comments.slice(0,100));
   }
 
-  // Обновляем состояние блокировки
   if (!hasPosted) {
     save('hasPosted', true);
     save('lockedName', name);
@@ -1415,15 +1453,12 @@ function submitComment() {
   applyNameLock();
   renderComments();
 
-  // Разблокируем кнопку через 1.5с
   setTimeout(() => {
     submitLocked = false;
     if (cfBtn) { cfBtn.disabled = false; cfBtn.style.opacity = ''; }
   }, 1500);
 }
 
-/* FIX: Лайк — хирургическое обновление только одной кнопки,
-   без полного ре-рендера. Форма ответа не закрывается. */
 function toggleLike(id) {
   const liked = load('liked',[]);
   const comments = load('comments',[]);
@@ -1441,8 +1476,6 @@ function toggleLike(id) {
     toast(t.toasts.like);
   }
   save('comments', comments);
-
-  // FIX: Точечное обновление DOM — только кнопка лайка
   const btn = document.querySelector(`#citem-${id} .act-btn:not(.reply-btn)`);
   if (btn) {
     btn.classList.toggle('liked', isNowLiked);
@@ -1450,42 +1483,29 @@ function toggleLike(id) {
   }
 }
 
-/* FIX: Реакция — точечное обновление конкретного элемента.
-   Главный фикс дублирования: используем remove() вместо save(key, null).
-   save(key, null) писал строку "null" в localStorage — при следующем чтении
-   JSON.parse("null") === null, функция думала что реакции нет → дублировала.
-   Теперь removeItem() реально удаляет ключ. */
 function addReaction(cid, emoji) {
   const comments = load('comments',[]);
   const c = comments.find(x=>x.id===cid); if(!c) return;
   if (!c.reactions) c.reactions = {};
-
   const myKey    = 'react_' + cid;
-  const myReacted = load(myKey, null); // null только если ключа нет
-
+  const myReacted = load(myKey, null);
   if (myReacted === emoji) {
-    // Снять свою реакцию
     c.reactions[emoji] = Math.max(0, (c.reactions[emoji]||0) - 1);
     if (!c.reactions[emoji]) delete c.reactions[emoji];
-    remove(myKey); // FIX: явное удаление ключа
+    remove(myKey);
   } else {
-    // Убрать предыдущую реакцию если была
     if (myReacted && c.reactions[myReacted] !== undefined) {
       c.reactions[myReacted] = Math.max(0, c.reactions[myReacted] - 1);
       if (!c.reactions[myReacted]) delete c.reactions[myReacted];
     }
-    // Добавить новую
     c.reactions[emoji] = (c.reactions[emoji]||0) + 1;
     save(myKey, emoji);
     toast(T[lang].toasts.react);
   }
   save('comments', comments);
-
-  // FIX: Точечное обновление только react-row нужного комментария
   updateReactRow(cid, c.reactions, load(myKey, null));
 }
 
-/* Обновляет только строку реакций без пересборки всего DOM */
 function updateReactRow(cid, reactions, myReact) {
   const row = document.querySelector(`#citem-${cid} .react-row`);
   if (!row) return;
@@ -1529,7 +1549,6 @@ function submitReply(cid) {
   inp.value='';
   document.getElementById('rf-'+cid).classList.remove('open');
 
-  // FIX: Добавляем только новый ответ в DOM без полного ре-рендера
   const newReply = c.replies[c.replies.length-1];
   const replyHtml = `
     <div class="reply-item" id="reply-${newReply.id}">
@@ -1548,20 +1567,13 @@ function submitReply(cid) {
   }
   repliesList.insertAdjacentHTML('beforeend', replyHtml);
 
-  // Обновляем счётчик на кнопке «Ответить»
   const replyBtn = document.querySelector(`#citem-${cid} .reply-btn`);
   if (replyBtn) replyBtn.innerHTML = `${t.replyBtn} (${c.replies.length})`;
-
   toast(t.toasts.reply);
 }
 
-/* FIX: renderComments сохраняет состояние открытых форм
-   и значения введённых текстов перед ре-рендером,
-   затем восстанавливает их после — форма не сбрасывается. */
 function renderComments() {
   const list = document.getElementById('clist');
-
-  // Сохраняем состояние перед ре-рендером
   const openForms   = {};
   const inputValues = {};
   document.querySelectorAll('.reply-form-wrap').forEach(el => {
@@ -1580,7 +1592,6 @@ function renderComments() {
     return;
   }
 
-  // Читаем все myReact ключи разом — не в цикле рендера
   const myReacts = {};
   comments.forEach(c => { myReacts[c.id] = load('react_'+c.id, null); });
 
@@ -1616,9 +1627,7 @@ function renderComments() {
         <span class="ctime">${timeAgo(c.ts)}</span>
       </div>
       <div class="cbody">${esc(c.text)}</div>
-
       <div class="react-row">${reactBar}</div>
-
       <div class="cactions">
         <button class="act-btn${isLiked?' liked':''}" onclick="toggleLike(${c.id})">
           ${isLiked?'❤️':'🤍'} ${c.likes}
@@ -1627,7 +1636,6 @@ function renderComments() {
           ${t.replyBtn} ${replyCount}
         </button>
       </div>
-
       <div class="reply-form-wrap" id="rf-${c.id}">
         <div class="reply-row">
           <input class="reply-input" placeholder="${t.replyPh}" maxlength="300"
@@ -1635,12 +1643,10 @@ function renderComments() {
           <button class="reply-send" onclick="submitReply(${c.id})">${t.replySend}</button>
         </div>
       </div>
-
       ${repliesHtml ? `<div class="replies-list">${repliesHtml}</div>` : ''}
     </div>`;
   }).join('');
 
-  // Восстанавливаем состояние форм после ре-рендера
   Object.entries(openForms).forEach(([cid, wasOpen]) => {
     if (wasOpen) {
       const wrap = document.getElementById('rf-'+cid);
@@ -1653,11 +1659,7 @@ function renderComments() {
   });
 }
 
-/* ── INIT ───────────────────────────────────────────────── */
-/* ── CLEANUP: убираем дубли из localStorage которые могли
-   накопиться из старой версии сайта ──────────────────────── */
 function cleanupStorage() {
-  // Дедупликация комментариев по id
   const comments = load('comments', []);
   const seen = new Set();
   const deduped = comments.filter(c => {
@@ -1665,33 +1667,27 @@ function cleanupStorage() {
     seen.add(c.id);
     return true;
   });
-  if (deduped.length !== comments.length) {
-    save('comments', deduped);
-  }
-
-  // Дедупликация массива оценок (удаляем значения вне диапазона 1-5)
+  if (deduped.length !== comments.length) save('comments', deduped);
   const ratings = load('ratings', []);
   const cleanRatings = ratings.filter(r => r >= 1 && r <= 5);
-  if (cleanRatings.length !== ratings.length) {
-    save('ratings', cleanRatings);
-  }
+  if (cleanRatings.length !== ratings.length) save('ratings', cleanRatings);
 }
 
 (function init() {
-  cleanupStorage(); // сначала чистим старый мусор
+  cleanupStorage();
   initStars();
   initAvatarPicker();
   const savedLang = load('lang', null);
   if (savedLang) {
     lang = savedLang;
-    // applyLang уже вызывает renderBars + renderComments внутри —
-    // НЕ вызываем их повторно снаружи (это и был источник дублей при рендере)
     applyLang();
     document.getElementById('lang-overlay').style.display = 'none';
   } else {
-    // Язык ещё не выбран — рендерим без перевода
+    renderShame();
+    renderGames();
     renderBars();
     renderComments();
+    applyCredits();
   }
   applyNameLock();
 })();
