@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YTFlorikHorrors | Roblox Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red:    #8b0000;
+  --red2:   #c0392b;
+  --red3:   #e74c3c;
+  --red4:   #4a0000;
+  --gold:   #c9a84c;
+  --gold2:  #f0c060;
+  --text:   #f0e6e6;
+  --dim:    #9a7070;
+  --bg:     #070000;
+  --panel:  rgba(55,0,0,0.45);
+  --border: rgba(120,0,0,0.6);
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--red); border-radius:3px; }
+
+#bg-fx {
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 5%,  rgba(100,0,0,.16) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 90% 95%, rgba(60,0,0,.18)  0%, transparent 55%);
+}
+#bg-grid {
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(100,0,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100,0,0,.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.corner { position:fixed; width:64px; height:64px; pointer-events:none; z-index:2; opacity:.18; }
+.corner.tl { top:12px; left:12px;  border-top:2px solid var(--red3); border-left:2px solid var(--red3); }
+.corner.tr { top:12px; right:12px; border-top:2px solid var(--red3); border-right:2px solid var(--red3); }
+.corner.bl { bottom:12px; left:12px;  border-bottom:2px solid var(--red3); border-left:2px solid var(--red3); }
+.corner.br { bottom:12px; right:12px; border-bottom:2px solid var(--red3); border-right:2px solid var(--red3); }
+
+#lang-overlay {
+  position:fixed; inset:0; z-index:1000;
+  background: rgba(5,0,0,.97);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:0;
+}
+.lo-logo {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:48px; letter-spacing:6px;
+  background: linear-gradient(to right, var(--red3), var(--gold2), var(--red3));
+  background-size:200%;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation: shimmer 4s linear infinite;
+  margin-bottom:6px;
+}
+.lo-icon { font-size:32px; margin-bottom:4px; }
+.lo-sub {
+  font-family:'Share Tech Mono',monospace;
+  font-size:11px; letter-spacing:6px; color:var(--dim);
+  margin-bottom:40px;
+}
+.lo-prompt {
+  font-family:'Share Tech Mono',monospace;
+  font-size:12px; letter-spacing:3px; color:var(--dim);
+  margin-bottom:20px;
+}
+.lang-btns { display:flex; gap:14px; }
+.lang-btn {
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  background: rgba(30,0,0,.7);
+  border:1px solid var(--border);
+  border-radius:12px; padding:24px 44px;
+  cursor:pointer; transition:all .25s;
+  user-select:none;
+}
+.lang-btn:hover {
+  border-color:var(--red3);
+  background:rgba(80,0,0,.55);
+  transform:translateY(-4px);
+  box-shadow:0 12px 32px rgba(139,0,0,.4);
+}
+.lang-btn .lf { font-size:42px; }
+.lang-btn .ln { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:3px; color:var(--text); }
+.lang-btn .ls { font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--dim); }
+.lo-line {
+  width:180px; height:1px;
+  background:linear-gradient(to right,transparent,var(--red2),transparent);
+  margin:28px 0;
+}
+.lo-hint { font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--dim); text-align:center; }
+
+header {
+  position:relative; z-index:10;
+  padding:32px 20px 0;
+  display:flex; flex-direction:column; align-items:center;
+}
+.logo-wrap { display:flex; align-items:center; gap:14px; }
+.logo-icon {
+  width:56px; height:56px;
+  background:linear-gradient(135deg, var(--red2), var(--red4));
+  border:2px solid var(--red3); border-radius:10px;
+  display:flex; align-items:center; justify-content:center; font-size:26px;
+  box-shadow:0 0 24px rgba(231,76,60,.4), inset 0 0 10px rgba(0,0,0,.5);
+  animation:glow 3s ease-in-out infinite;
+}
+.logo-text {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:50px; letter-spacing:5px; line-height:1;
+  background:linear-gradient(to right, var(--red3), var(--gold2), var(--red3));
+  background-size:200%;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation:shimmer 4s linear infinite;
+}
+.tagline {
+  font-family:'Share Tech Mono',monospace;
+  font-size:11px; letter-spacing:6px; color:var(--red3);
+  text-transform:uppercase; opacity:.65; margin-top:5px;
+}
+
+nav {
+  position:relative; z-index:10;
+  display:flex; gap:6px;
+  margin:26px auto 0;
+  background:rgba(14,0,0,.88);
+  border:1px solid var(--border);
+  border-radius:8px; padding:5px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 4px 28px rgba(0,0,0,.6), inset 0 1px 0 rgba(120,0,0,.3);
+}
+.nav-btn {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:17px; letter-spacing:3px;
+  padding:10px 28px;
+  border:1px solid transparent; border-radius:5px;
+  background:transparent; color:var(--dim);
+  cursor:pointer; transition:all .25s; white-space:nowrap;
+}
+.nav-btn:hover { color:var(--text); border-color:var(--red2); }
+.nav-btn.active {
+  color:var(--gold2);
+  border-color:var(--red3);
+  background:linear-gradient(135deg, rgba(120,0,0,.55), rgba(40,0,0,.85));
+  box-shadow:0 0 14px rgba(231,76,60,.3);
+}
+
+#lang-switch {
+  position:fixed; top:14px; right:14px; z-index:200;
+  font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:2px;
+  background:rgba(18,0,0,.85); border:1px solid var(--border);
+  border-radius:5px; padding:7px 14px; color:var(--dim);
+  cursor:pointer; transition:all .25s;
+}
+#lang-switch:hover { border-color:var(--red3); color:var(--text); }
+
+.hdiv {
+  position:relative; z-index:10;
+  width:72%; max-width:660px;
+  height:1px; margin:22px auto 0;
+  background:linear-gradient(to right, transparent, var(--red2), var(--gold), var(--red2), transparent);
+}
+
+main {
+  position:relative; z-index:10;
+  max-width:960px;
+  margin:36px auto 80px;
+  padding:0 18px;
+}
+
+.page { display:none; }
+.page.active { display:block; animation:fadeup .45s ease; }
+
+.hero-card {
+  background:var(--panel);
+  border:1px solid var(--border); border-radius:14px;
+  padding:46px 44px 38px; text-align:center;
+  backdrop-filter:blur(8px); position:relative; overflow:hidden;
+  box-shadow:0 8px 44px rgba(0,0,0,.7); margin-bottom:22px;
+}
+.hero-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right, transparent, var(--red3), var(--gold2), var(--red3), transparent);
+}
+.hero-card h1 {
+  font-family:'Bebas Neue',sans-serif; font-size:56px; letter-spacing:6px;
+  background:linear-gradient(to bottom, var(--gold2), var(--red3));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:10px;
+}
+.hero-card .hero-sub {
+  font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:5px;
+  color:var(--red3); text-transform:uppercase; opacity:.7; margin-bottom:22px;
+}
+.hero-card .hero-p { font-size:16px; line-height:1.85; color:var(--text); max-width:620px; margin:0 auto; }
+
+.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+.info-card {
+  background:rgba(35,0,0,.55); border:1px solid var(--border);
+  border-radius:10px; padding:22px; transition:all .25s;
+}
+.info-card:hover { border-color:var(--red3); transform:translateY(-3px); box-shadow:0 8px 24px rgba(100,0,0,.3); }
+.info-card .ic-icon { font-size:26px; margin-bottom:8px; }
+.info-card h3 { font-family:'Bebas Neue',sans-serif; font-size:19px; letter-spacing:2px; color:var(--gold2); margin-bottom:6px; }
+.info-card p { font-size:13px; color:var(--dim); line-height:1.65; }
+
+.warn-banner {
+  background:linear-gradient(135deg, rgba(110,0,0,.45), rgba(20,0,0,.85));
+  border:1px solid var(--red2); border-radius:10px;
+  padding:17px 22px; margin-bottom:22px;
+  display:flex; align-items:center; gap:14px;
+  box-shadow:0 0 22px rgba(100,0,0,.22);
+}
+.warn-banner .wb-icon { font-size:28px; }
+.warn-banner h2 { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:3px; color:var(--red3); margin-bottom:3px; }
+.warn-banner p  { font-size:13px; color:var(--dim); }
+
+.stitle {
+  font-family:'Bebas Neue',sans-serif; font-size:27px; letter-spacing:4px;
+  color:var(--gold2); margin:36px 0 14px;
+  display:flex; align-items:center; gap:12px;
+}
+.stitle::after { content:''; flex:1; height:1px; background:linear-gradient(to right, var(--red2), transparent); }
+
+.advice-box {
+  background:var(--panel);
+  border:1px solid var(--border); border-left:3px solid var(--red3);
+  border-radius:0 10px 10px 0; padding:20px 24px; margin-bottom:14px;
+  font-size:15px; line-height:1.8;
+}
+.advice-box:hover { border-left-color:var(--gold2); }
+.advice-box .hl-red   { color:#ff6060; }
+.advice-box .hl-green { color:#5dff99; }
+
+.tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
+.tag {
+  font-family:'Share Tech Mono',monospace; font-size:11px;
+  padding:3px 11px; border-radius:4px; border:1px solid;
+}
+.tag.bad  { background:rgba(100,0,0,.3); border-color:var(--red2); color:#ff8080; }
+.tag.good { background:rgba(0,70,35,.3); border-color:#27ae60; color:#5dff99; }
+
+.shame-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:11px; }
+.shame-card {
+  background:rgba(45,0,0,.55); border:1px solid rgba(130,0,0,.5);
+  border-radius:9px; padding:15px; position:relative; overflow:hidden;
+}
+.shame-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right, var(--red2), #ff4444);
+}
+.shame-card .sc-type { font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:3px; color:#ff6060; margin-bottom:5px; text-transform:uppercase; }
+.shame-card h4 { font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:2px; color:var(--text); margin-bottom:5px; }
+.shame-card p  { font-size:12px; color:var(--dim); line-height:1.6; }
+.shame-verdict {
+  display:inline-block; margin-top:9px;
+  font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px;
+  color:#ff4444; padding:3px 9px;
+  background:rgba(100,0,0,.3); border:1px solid rgba(139,0,0,.5); border-radius:3px;
+}
+
+.games-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(265px,1fr)); gap:13px; }
+.game-card {
+  background:rgba(22,0,0,.68); border:1px solid var(--border);
+  border-radius:12px; padding:20px; position:relative; overflow:hidden;
+  transition:all .25s;
+}
+.game-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+.game-card.t-pvp::before     { background:linear-gradient(to right,var(--gold),var(--gold2)); }
+.game-card.t-shooter::before { background:linear-gradient(to right,var(--red3),#ff5555); }
+.game-card.t-horror::before  { background:linear-gradient(to right,#9b59b6,#6c3483); }
+.game-card.t-survival::before{ background:linear-gradient(to right,#f39c12,#e67e22); }
+.game-card.t-stealth::before { background:linear-gradient(to right,#16a085,#1abc9c); }
+.game-card:hover { border-color:var(--red3); transform:translateY(-4px); box-shadow:0 14px 32px rgba(100,0,0,.38); }
+
+.gc-type { font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; margin-bottom:7px; }
+.t-pvp .gc-type      { color:var(--gold2); }
+.t-shooter .gc-type  { color:var(--red3); }
+.t-horror .gc-type   { color:#9b59b6; }
+.t-survival .gc-type { color:#f39c12; }
+.t-stealth .gc-type  { color:#1abc9c; }
+
+.gc-badge {
+  position:absolute; top:11px; right:11px;
+  font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:1px;
+  padding:3px 8px; border-radius:3px;
+}
+.gc-badge.free     { background:rgba(0,60,30,.4); border:1px solid #27ae60; color:#5dff99; }
+.gc-badge.optional { background:rgba(60,40,0,.4); border:1px solid #f39c12; color:#f0c060; }
+
+.game-card h3 { font-family:'Bebas Neue',sans-serif; font-size:21px; letter-spacing:2px; color:var(--text); margin-bottom:8px; }
+.gc-desc { font-size:13px; color:var(--dim); line-height:1.65; margin-bottom:11px; }
+
+.pc-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:11px; }
+.pc-col .pc-title { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:2px; margin-bottom:3px; }
+.pc-col.pros .pc-title { color:#5dff99; }
+.pc-col.cons .pc-title { color:#ff8080; }
+.pc-col .pc-item { font-size:11px; line-height:1.7; }
+.pc-col.pros .pc-item { color:#a0ffbe; }
+.pc-col.cons .pc-item { color:#ffa0a0; }
+.pc-col .pc-item::before { content:'• '; opacity:.5; }
+
+.gc-rating { display:flex; align-items:center; gap:7px; }
+.gc-stars { font-size:12px; }
+.gc-stars.s5 { color:#f0c060; }
+.gc-stars.s4 { color:#d09020; }
+.gc-stars.s3 { color:#a07010; }
+.gc-score { font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--dim); }
+
+.tips-list { display:flex; flex-direction:column; gap:9px; }
+.tip-item {
+  background:rgba(28,0,0,.55); border:1px solid var(--border);
+  border-radius:8px; padding:16px 20px;
+  display:flex; gap:14px; align-items:flex-start; transition:border-color .25s;
+}
+.tip-item:hover { border-color:var(--red3); }
+.tip-num { font-family:'Bebas Neue',sans-serif; font-size:30px; color:var(--red3); opacity:.55; line-height:1; min-width:26px; }
+.tip-content h4 { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:2px; color:var(--gold2); margin-bottom:3px; }
+.tip-content p  { font-size:13px; color:var(--dim); line-height:1.65; }
+
+.comments-section {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:14px; padding:30px;
+  backdrop-filter:blur(8px); position:relative; overflow:hidden;
+}
+.comments-section::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right, transparent, var(--red3), var(--gold2), var(--red3), transparent);
+}
+
+.rate-box {
+  background:rgba(28,0,0,.55); border:1px solid var(--border);
+  border-radius:10px; padding:22px; text-align:center; margin-bottom:22px;
+}
+.rate-box h3 { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:3px; color:var(--gold2); margin-bottom:12px; }
+.star-row { display:flex; gap:7px; justify-content:center; margin-bottom:10px; }
+.star-row span {
+  font-size:34px; cursor:pointer; transition:transform .15s, filter .15s;
+  filter:grayscale(1) opacity(.35);
+}
+.star-row span.lit { filter:grayscale(0) opacity(1); }
+.star-row span:hover { transform:scale(1.22); }
+.rate-lbl { font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--dim); letter-spacing:2px; min-height:18px; margin-bottom:14px; }
+
+.bar-list { width:100%; max-width:300px; margin:0 auto; }
+.bar-row { display:flex; align-items:center; gap:7px; margin-bottom:4px; }
+.bar-lbl  { font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--dim); min-width:14px; text-align:right; }
+.bar-bg   { flex:1; height:5px; background:rgba(60,0,0,.5); border-radius:3px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:3px; background:linear-gradient(to right,var(--red2),var(--gold)); transition:width .55s ease; }
+.bar-cnt  { font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--dim); min-width:18px; }
+
+.overall { margin-top:12px; text-align:center; }
+.overall-num { font-family:'Bebas Neue',sans-serif; font-size:52px; letter-spacing:2px; color:var(--gold2); line-height:1; }
+.overall-sub { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--dim); margin-top:2px; }
+
+.cf-wrap { margin-bottom:20px; }
+.cf-row { display:flex; gap:8px; margin-bottom:8px; }
+
+/* ── NAME ROW & LOCK ── */
+.name-row {
+  display:flex; align-items:center; gap:8px; margin-bottom:8px;
+}
+.name-row .cf-input { margin-bottom:0; }
+.cf-input.locked {
+  background:rgba(10,0,0,.7);
+  border-color:rgba(80,0,0,.5);
+  color:var(--dim);
+  cursor:not-allowed;
+  opacity:.75;
+}
+.rename-btn {
+  font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px;
+  white-space:nowrap; flex-shrink:0;
+  background:rgba(40,25,0,.6); border:1px solid var(--gold);
+  border-radius:5px; padding:8px 13px; color:var(--gold2);
+  cursor:pointer; transition:all .22s;
+}
+.rename-btn:hover:not([disabled]) {
+  background:rgba(80,50,0,.7);
+  box-shadow:0 0 10px rgba(240,192,96,.25);
+}
+.rename-btn[disabled] {
+  opacity:.45; cursor:not-allowed;
+  border-color:rgba(80,0,0,.4); color:var(--dim);
+  background:rgba(15,0,0,.5);
+}
+.name-lock-info {
+  display:flex; align-items:center; gap:7px;
+  background:rgba(10,0,0,.55);
+  border:1px solid rgba(80,0,0,.4);
+  border-radius:5px; padding:7px 12px;
+  margin-bottom:8px;
+}
+.lock-icon { font-size:13px; }
+.lock-msg {
+  font-family:'Share Tech Mono',monospace; font-size:10px;
+  letter-spacing:1px; color:var(--dim);
+}
+.lock-msg.frozen { color:#ff6060; }
+.cf-input {
+  flex:1; background:rgba(18,0,0,.75); border:1px solid var(--border);
+  border-radius:6px; padding:11px 15px;
+  font-family:'Rajdhani',sans-serif; font-size:15px; color:var(--text);
+  outline:none; transition:border-color .25s;
+}
+.cf-input:focus { border-color:var(--red3); box-shadow:0 0 0 2px rgba(231,76,60,.12); }
+.cf-input::placeholder { color:var(--dim); opacity:.65; }
+textarea.cf-input { resize:vertical; min-height:78px; }
+.cf-btn {
+  font-family:'Bebas Neue',sans-serif; font-size:17px; letter-spacing:3px;
+  padding:11px 26px; white-space:nowrap;
+  background:linear-gradient(135deg, var(--red), var(--red4));
+  border:1px solid var(--red2); border-radius:6px; color:var(--text);
+  cursor:pointer; transition:all .25s;
+}
+.cf-btn:hover { background:linear-gradient(135deg,var(--red2),var(--red)); box-shadow:0 0 16px rgba(192,57,43,.4); transform:translateY(-1px); }
+.cf-btn:active { transform:none; }
+
+.av-pick-label {
+  font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:3px;
+  color:var(--dim); margin-bottom:8px; text-transform:uppercase;
+}
+.av-pick-grid {
+  display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;
+}
+.av-pick-grid span {
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; cursor:pointer;
+  border:2px solid transparent;
+  background:rgba(30,0,0,.6);
+  transition:all .2s;
+}
+.av-pick-grid span:hover { transform:scale(1.18); border-color:var(--red2); }
+.av-pick-grid span.av-sel { border-color:var(--gold2); background:rgba(80,40,0,.4); box-shadow:0 0 10px rgba(240,192,96,.35); }
+
+.clist { display:flex; flex-direction:column; gap:10px; }
+.citem {
+  background:rgba(22,0,0,.65); border:1px solid var(--border);
+  border-radius:8px; padding:15px 17px;
+  transition:border-color .25s; animation:fadeup .4s ease;
+}
+.citem:hover { border-color:rgba(180,0,0,.45); }
+.citem-head { display:flex; align-items:center; gap:9px; margin-bottom:7px; }
+.cavatar {
+  width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:18px; border:2px solid var(--border); flex-shrink:0;
+  transition:border-color .2s;
+}
+.citem:hover .cavatar { border-color:var(--red2); }
+.cname  { font-family:'Bebas Neue',sans-serif; font-size:15px; letter-spacing:2px; }
+.cstars { font-size:11px; }
+.ctime  { font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--dim); margin-left:auto; }
+.cbody  { font-size:14px; color:#d0b8b8; line-height:1.7; }
+
+.cactions { display:flex; align-items:center; gap:6px; margin-top:9px; flex-wrap:wrap; }
+.act-btn {
+  background:rgba(35,0,0,.5); border:1px solid var(--border);
+  border-radius:4px; padding:4px 10px;
+  font-family:'Share Tech Mono',monospace; font-size:10px;
+  color:var(--dim); cursor:pointer; transition:all .2s;
+  display:flex; align-items:center; gap:4px; user-select:none;
+}
+.act-btn:hover { border-color:var(--red2); color:var(--text); }
+.act-btn.liked { border-color:var(--red3); color:var(--red3); }
+.act-btn.reply-btn:hover { border-color:var(--gold); color:var(--gold2); }
+
+.react-row { display:flex; gap:5px; margin-top:7px; flex-wrap:wrap; }
+.react-btn {
+  background:rgba(28,0,0,.55); border:1px solid var(--border);
+  border-radius:20px; padding:3px 10px;
+  font-size:13px; cursor:pointer; transition:all .2s;
+  display:flex; align-items:center; gap:4px;
+  user-select:none;
+}
+.react-btn:hover { transform:scale(1.1); border-color:var(--red2); }
+.react-btn.reacted { border-color:var(--gold); background:rgba(60,40,0,.4); }
+.react-btn .react-cnt {
+  font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--dim);
+}
+.react-btn.reacted .react-cnt { color:var(--gold2); }
+
+.reply-form-wrap {
+  margin-top:10px; display:none;
+  background:rgba(15,0,0,.6); border:1px solid var(--border);
+  border-left:2px solid var(--gold); border-radius:0 8px 8px 0;
+  padding:12px 14px;
+}
+.reply-form-wrap.open { display:block; animation:fadeup .3s ease; }
+.reply-row { display:flex; gap:7px; }
+.reply-input {
+  flex:1; background:rgba(25,0,0,.8); border:1px solid var(--border);
+  border-radius:5px; padding:8px 12px;
+  font-family:'Rajdhani',sans-serif; font-size:14px; color:var(--text);
+  outline:none; transition:border-color .2s;
+}
+.reply-input:focus { border-color:var(--gold); }
+.reply-input::placeholder { color:var(--dim); opacity:.55; }
+.reply-send {
+  font-family:'Bebas Neue',sans-serif; font-size:14px; letter-spacing:2px;
+  padding:8px 16px; white-space:nowrap;
+  background:rgba(60,40,0,.5); border:1px solid var(--gold);
+  border-radius:5px; color:var(--gold2); cursor:pointer; transition:all .2s;
+}
+.reply-send:hover { background:rgba(100,70,0,.6); box-shadow:0 0 10px rgba(240,192,96,.25); }
+
+.replies-list { margin-top:10px; display:flex; flex-direction:column; gap:7px; }
+.reply-item {
+  display:flex; gap:9px; align-items:flex-start;
+  background:rgba(18,0,0,.5); border:1px solid rgba(90,0,0,.4);
+  border-left:2px solid rgba(120,0,0,.6);
+  border-radius:0 7px 7px 0; padding:10px 13px;
+  animation:fadeup .3s ease;
+}
+.reply-avatar {
+  width:26px; height:26px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; border:1px solid var(--border); margin-top:1px;
+}
+.reply-content .rname { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:2px; color:var(--gold2); }
+.reply-content .rtime { font-family:'Share Tech Mono',monospace; font-size:9px; color:var(--dim); margin-left:6px; }
+.reply-content .rbody { font-size:13px; color:#c8a8a8; line-height:1.65; margin-top:3px; }
+
+/* ── NAME LOCK ── */
+.name-row { display:flex; gap:8px; align-items:center; margin-bottom:8px; position:relative; }
+.name-row .cf-input { flex:1; }
+.cf-input.locked {
+  opacity:.55; cursor:not-allowed; pointer-events:none;
+  border-color:rgba(80,0,0,.5);
+  background:rgba(10,0,0,.85);
+}
+.name-lock-info {
+  font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px;
+  color:var(--dim); margin-bottom:10px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+}
+.name-lock-info .lock-icon { color:var(--red3); font-size:12px; }
+.name-lock-info .lock-msg  { color:var(--dim); }
+.name-lock-info .lock-msg.frozen { color:#ff6060; }
+.rename-btn {
+  font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:2px;
+  padding:4px 12px; white-space:nowrap;
+  background:rgba(60,40,0,.4); border:1px solid var(--gold);
+  border-radius:4px; color:var(--gold2); cursor:pointer; transition:all .2s;
+}
+.rename-btn:hover { background:rgba(100,70,0,.55); box-shadow:0 0 8px rgba(240,192,96,.25); }
+.rename-btn:disabled { opacity:.35; cursor:not-allowed; pointer-events:none; border-color:var(--border); color:var(--dim); }
+
+.no-comments {
+  text-align:center; padding:28px;
+  font-family:'Share Tech Mono',monospace; font-size:11px;
+  color:var(--dim); letter-spacing:2px;
+  border:1px dashed var(--border); border-radius:8px;
+}
+
+.author-card {
+  background:var(--panel); border:1px solid var(--border);
+  border-radius:14px; padding:50px 42px; text-align:center;
+  backdrop-filter:blur(8px); position:relative; overflow:hidden;
+  box-shadow:0 8px 44px rgba(0,0,0,.7);
+}
+.author-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right, transparent, var(--red3), var(--gold2), var(--red3), transparent);
+}
+.author-card::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 55% 35% at 50% 0%, rgba(110,0,0,.18), transparent 55%);
+  pointer-events:none;
+}
+.a-avatar {
+  width:106px; height:106px; border-radius:50%;
+  background:linear-gradient(135deg,var(--red2),var(--red4));
+  border:3px solid var(--red3);
+  display:flex; align-items:center; justify-content:center; font-size:46px;
+  margin:0 auto 20px;
+  box-shadow:0 0 32px rgba(231,76,60,.42);
+  animation:glow 3s ease-in-out infinite;
+  position:relative; z-index:1;
+}
+.a-name {
+  font-family:'Bebas Neue',sans-serif; font-size:42px; letter-spacing:5px;
+  background:linear-gradient(to right,var(--red3),var(--gold2));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:6px; position:relative; z-index:1;
+}
+.a-role {
+  font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:5px;
+  color:var(--red3); text-transform:uppercase; opacity:.7;
+  margin-bottom:18px; position:relative; z-index:1;
+}
+.a-bio {
+  font-size:15px; color:var(--dim); line-height:1.85;
+  max-width:520px; margin:0 auto 26px; position:relative; z-index:1;
+}
+.tg-btn {
+  display:inline-flex; align-items:center; gap:9px;
+  background:linear-gradient(135deg,rgba(0,115,190,.22),rgba(0,70,140,.35));
+  border:1px solid rgba(0,136,204,.5); border-radius:8px;
+  padding:13px 32px;
+  font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:3px;
+  color:#5bc8f5; text-decoration:none;
+  transition:all .25s; position:relative; z-index:1;
+}
+.tg-btn:hover {
+  background:linear-gradient(135deg,rgba(0,136,204,.35),rgba(0,80,160,.5));
+  border-color:#5bc8f5; box-shadow:0 0 20px rgba(0,136,204,.3);
+  transform:translateY(-2px);
+}
+.a-stats {
+  display:flex; justify-content:center; gap:34px;
+  margin-top:32px; padding-top:28px; border-top:1px solid var(--border);
+  position:relative; z-index:1; flex-wrap:wrap;
+}
+.a-stat .sn { font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:2px; color:var(--gold2); line-height:1; }
+.a-stat .sl { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; margin-top:3px; }
+
+#toast {
+  position:fixed; bottom:22px; right:22px; z-index:999;
+  background:linear-gradient(135deg,rgba(130,0,0,.92),rgba(38,0,0,.96));
+  border:1px solid var(--red3); border-radius:8px;
+  padding:13px 18px;
+  font-family:'Share Tech Mono',monospace; font-size:12px;
+  color:var(--text); letter-spacing:1px;
+  opacity:0; transform:translateY(70px);
+  transition:all .35s ease; pointer-events:none;
+}
+#toast.show { opacity:1; transform:translateY(0); }
+
+@keyframes fadeup  { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+@keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+@keyframes glow {
+  0%,100% { box-shadow:0 0 22px rgba(231,76,60,.38), inset 0 0 10px rgba(0,0,0,.5); }
+  50%      { box-shadow:0 0 46px rgba(231,76,60,.72), 0 0 72px rgba(139,0,0,.28), inset 0 0 10px rgba(0,0,0,.5); }
+}
+
+@media(max-width:600px){
+  .logo-text { font-size:36px; }
+  .hero-card { padding:26px 16px; }
+  .hero-card h1 { font-size:38px; }
+  .info-grid { grid-template-columns:1fr; }
+  nav { flex-wrap:wrap; justify-content:center; }
+  .author-card { padding:30px 16px; }
+  .a-stats { gap:18px; }
+  .comments-section { padding:18px 14px; }
+  .cf-row { flex-direction:column; }
+  .pc-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="bg-fx"></div>
+<div id="bg-grid"></div>
+<div class="corner tl"></div><div class="corner tr"></div>
+<div class="corner bl"></div><div class="corner br"></div>
+<div id="toast"></div>
+
+<div id="lang-overlay">
+  <div class="lo-icon">🎮</div>
+  <div class="lo-logo">YTFlorikHorrors</div>
+  <div class="lo-sub">// ROBLOX GUIDE //</div>
+  <div class="lo-prompt" id="lo-prompt">Выбери язык / Choose language</div>
+  <div class="lang-btns">
+    <div class="lang-btn" onclick="chooseLang('ru')">
+      <span class="lf">🇷🇺</span>
+      <span class="ln">Русский</span>
+      <span class="ls">RUSSIAN</span>
+    </div>
+    <div class="lang-btn" onclick="chooseLang('en')">
+      <span class="lf">🇬🇧</span>
+      <span class="ln">English</span>
+      <span class="ls">ENGLISH</span>
+    </div>
+  </div>
+  <div class="lo-line"></div>
+  <div class="lo-hint" id="lo-hint">Можно сменить в любой момент / Can be changed anytime</div>
+</div>
+
+<button id="lang-switch" onclick="openLangOverlay()">🌐 RU / EN</button>
+
+<header>
+  <div class="logo-wrap">
+    <div class="logo-icon">🎮</div>
+    <div class="logo-text">YTFlorikHorrors</div>
+  </div>
+  <div class="tagline" id="tagline">// Честный Roblox Guide — без рекламы, без лжи //</div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="openPage('home', this)" id="nav-home">Страница</button>
+  <button class="nav-btn"        onclick="openPage('important', this)" id="nav-important">Важное</button>
+  <button class="nav-btn"        onclick="openPage('author', this)" id="nav-author">Автор</button>
+</nav>
+<div class="hdiv"></div>
+
+<main>
+
+  <!-- PAGE: HOME -->
+  <div id="page-home" class="page active">
+    <div class="hero-card">
+      <h1 id="hero-title">ROBLOX GUIDE</h1>
+      <div class="hero-sub" id="hero-sub">// Честные советы от реального игрока //</div>
+      <p class="hero-p" id="hero-p">Добро пожаловать. Этот сайт создан с одной целью — <strong style="color:var(--gold2)">сэкономить твоё время</strong>. Roblox огромен, и большинство плейсов созданы не для твоего удовольствия, а чтобы выбить из тебя деньги. Здесь ты найдёшь честные обзоры, список того что стоит и не стоит твоего внимания — без рекламы и спонсоров.</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-icon">🎯</div>
+        <h3 id="ic1-t">Зачем этот сайт?</h3>
+        <p id="ic1-p">Сотни плейсов каждый месяц — и 90% из них мусор. Этот сайт помогает ориентироваться: что играть, что игнорировать и почему.</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">🔥</div>
+        <h3 id="ic2-t">Кто это делает?</h3>
+        <p id="ic2-p"><strong style="color:var(--gold2)">YTFlorikHorrors</strong> — игрок который устал видеть как люди тратят время и деньги на кликеры. Только личный опыт, никакого буллшита.</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">⚔️</div>
+        <h3 id="ic3-t">Что здесь найдёшь?</h3>
+        <p id="ic3-p">Обзоры шутеров, PvP-игр, хоррора и выживания. Честный список игр которые стоят времени — и чёрный список которого лучше избегать.</p>
+      </div>
+      <div class="info-card">
+        <div class="ic-icon">💬</div>
+        <h3 id="ic4-t">Твоё мнение важно</h3>
+        <p id="ic4-p">В разделе <strong style="color:var(--red3)">«Важное»</strong> можно оставить оценку и комментарий. Делись опытом — поможешь другим игрокам.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE: IMPORTANT -->
+  <div id="page-important" class="page">
+
+    <div class="warn-banner">
+      <span class="wb-icon">☠️</span>
+      <div>
+        <h2 id="wb-title">Честно и без цензуры</h2>
+        <p id="wb-sub">Здесь нет рекламы, нет спонсоров — только реальный опыт и прямые слова</p>
+      </div>
+    </div>
+
+    <div class="stitle" id="st-shame">💀 Стена позора — не трать время</div>
+    <div class="advice-box">
+      <p id="shame-advice">Будем честны: <span class="hl-red">большинство популярных плейсов — ловушки</span>. Они завлекают крутыми превью, а внутри — бесконечный гринд или кнопка «купи». Разработчики намеренно делают прогресс невозможным без доната. <span class="hl-green">Это не игры — это казино для детей.</span></p>
+    </div>
+    <div class="shame-grid">
+      <div class="shame-card"><div class="sc-type">🐾 Pet симулятор</div><h4>Pet Simulator X/99</h4><p>Яйца с рандомными питомцами — это лутбоксы. Прогресс намеренно сломан без доната. Игра эксплуатирует детскую психологию.</p><span class="shame-verdict">// GAMBLING MECHANICS //</span></div>
+      <div class="shame-card"><div class="sc-type">🍎 Farming</div><h4>Blox Fruits</h4><p>Был неплох, но превратился в p2w болото. Топ-фрукты за реальные деньги дают огромное преимущество в PvP.</p><span class="shame-verdict">// PAY TO WIN //</span></div>
+      <div class="shame-card"><div class="sc-type">🖱️ Кликер</div><h4>Все «Simulator» игры</h4><p>Mining Sim, Lifting Sim и 1000 клонов. Кликай, собирай число, купи апгрейд. Никакого скилла, только гринд или деньги.</p><span class="shame-verdict">// ZERO SKILL //</span></div>
+      <div class="shame-card"><div class="sc-type">🏭 Тайкун</div><h4>Все Tycoon игры</h4><p>Стоишь на кнопке, ждёшь деньги. Gamepass за 500 робуксов даёт x10 скорость. Без него ты AFK машина.</p><span class="shame-verdict">// AFK WASTE //</span></div>
+      <div class="shame-card"><div class="sc-type">🐣 Adoption</div><h4>Adopt Me</h4><p>Рандомные питомцы, трейды эксплуатирующие детей. Социальная манипуляция в чистом виде.</p><span class="shame-verdict">// EXPLOIT MECHANIC //</span></div>
+      <div class="shame-card"><div class="sc-type">⚡ Аниме</div><h4>Anime Fighting Sim X</h4><p>Гриндь 10 часов ради одной способности или купи gamepass. Замаскированный кликер в аниме-обёртке.</p><span class="shame-verdict">// GRIND OR PAY //</span></div>
+      <div class="shame-card"><div class="sc-type">🧱 Dress-up</div><h4>Royale High</h4><p>Все предметы либо сезонные и недоступны, либо стоят кучу робуксов. Экономика создана чтобы ты тратил.</p><span class="shame-verdict">// FASHION TAX //</span></div>
+      <div class="shame-card"><div class="sc-type">🏃 Obby</div><h4>Все «Escape» Obby</h4><p>«Escape the school», «Escape the dentist» — один шаблон, тысячи копий. Прыжки по платформам ради значка.</p><span class="shame-verdict">// COPY PASTE //</span></div>
+      <div class="shame-card"><div class="sc-type">🚗 Гонки</div><h4>Vehicle Simulator</h4><p>Машины за деньги дают в разы лучшие характеристики. Без доната ты на «запорожце» среди Ferrari.</p><span class="shame-verdict">// PAY FOR SPEED //</span></div>
+      <div class="shame-card"><div class="sc-type">🥊 Файтинг</div><h4>Shindo Life</h4><p>Лучшие стили — через платный спин. Буквально лутбоксы. Потратишь часы или деньги ради хорошей способности.</p><span class="shame-verdict">// LOOTBOX DISGUISED //</span></div>
+      <div class="shame-card"><div class="sc-type">🍀 Рандом</div><h4>Sol's RNG / AUT RNG</h4><p>Нажми кнопку — получи рандом. Повтори 10 000 раз. Это не геймплей — это Skinner Box.</p><span class="shame-verdict">// DOPAMINE TRAP //</span></div>
+      <div class="shame-card"><div class="sc-type">🏠 RP</div><h4>Brookhaven</h4><p>RP без механик. Каждый второй «дом мечты» — за gamepass. Самое популярное ≠ хорошее.</p><span class="shame-verdict">// EMPTY CONTENT //</span></div>
+      <div class="shame-card"><div class="sc-type">🐾 Питомцы 2</div><h4>Bubble Gum Simulator</h4><p>Рандомные питомцы за робуксы с шансами скрытыми мелким шрифтом. Разработано чтобы дети не замечали траты.</p><span class="shame-verdict">// PREDATORY DESIGN //</span></div>
+      <div class="shame-card"><div class="sc-type">🌊 Волны</div><h4>Tower Defense Simulator</h4><p>Лучшие башни — за робуксы или гринд месяцами. Без доната ты аутсайдер в каждом лобби.</p><span class="shame-verdict">// PAY TO COMPETE //</span></div>
+      <div class="shame-card"><div class="sc-type">🧸 Ивенты</div><h4>Seasonal Event Trash</h4><p>Созданы к Хэллоуину/Рождеству с одной целью — продать ивентовые предметы. Закрываются через 2 недели.</p><span class="shame-verdict">// FOMO EXPLOITATION //</span></div>
+      <div class="shame-card"><div class="sc-type">💎 RPG</div><h4>Arcane Odyssey</h4><p>Хорошая основа убитая магазином. Платные бусты дают преимущество в PvP. Без доната ты аутсайдер в эндгейме.</p><span class="shame-verdict">// BROKEN ENDGAME //</span></div>
+    </div>
+
+    <div class="stitle" id="st-good">🏆 Реально стоит играть</div>
+    <div class="advice-box">
+      <p id="good-advice">Игры где <span class="hl-green">скилл важнее кошелька</span>. Ты можешь быть лучшим без единого потраченного рубля — именно это делает игру настоящей игрой.</p>
+    </div>
+    <div class="games-grid">
+      <div class="game-card t-pvp">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">⚔️ PvP Файтинг</div>
+        <h3>THE STRONGEST BATTLEGROUNDS</h3>
+        <p class="gc-desc">Лучший файтинг на Roblox. Аниме-способности, быстрые бои, огромный скилл-кепинг.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Чистый скилл</div><div class="pc-item">Много героев</div><div class="pc-item">Большой онлайн</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Токсичные игроки</div><div class="pc-item">Сложная кривая</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s5">★★★★★</span><span class="gc-score">// 5.0 — Топ выбор</span></div>
+      </div>
+      <div class="game-card t-shooter">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">🔫 Реалистичный шутер</div>
+        <h3>PHANTOM FORCES</h3>
+        <p class="gc-desc">Лучший шутер на платформе. Реальная баллистика, огромный арсенал, тактические карты.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Лучший gunplay</div><div class="pc-item">Много режимов</div><div class="pc-item">Честный баланс</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Старый движок</div><div class="pc-item">Иногда читеры</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s5">★★★★★</span><span class="gc-score">// 4.9 — Обязателен</span></div>
+      </div>
+      <div class="game-card t-shooter">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">🔫 Аркадный шутер</div>
+        <h3>ARSENAL</h3>
+        <p class="gc-desc">Gun Game на Roblox. Каждый убийство — новое оружие. Идеально для тренировки aim.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Быстрые матчи</div><div class="pc-item">Тренирует aim</div><div class="pc-item">Честный баланс</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Может надоесть</div><div class="pc-item">Иногда лагает</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.2 — Отличный</span></div>
+      </div>
+      <div class="game-card t-pvp">
+        <span class="gc-badge optional">~ КОСМЕТИКА</span>
+        <div class="gc-type">⚔️ Street PvP</div>
+        <h3>DA HOOD</h3>
+        <p class="gc-desc">Уличный RP с реальным PvP. Донат чисто косметический — победа зависит от скилла.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Открытый мир</div><div class="pc-item">Честный PvP</div><div class="pc-item">Большое комьюнити</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Очень токсично</div><div class="pc-item">Высокий порог</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.0 — Для смелых</span></div>
+      </div>
+      <div class="game-card t-horror">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">👻 Хоррор пазл</div>
+        <h3>DOORS</h3>
+        <p class="gc-desc">Один из лучших хоррор-опытов на Roblox. Уникальные монстры, атмосфера нагнетается с каждым шагом.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Отличная атмосфера</div><div class="pc-item">Уникальный дизайн</div><div class="pc-item">Кооп</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Рандом влияет</div><div class="pc-item">Быстро надоедает</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.3 — Хоррор топ</span></div>
+      </div>
+      <div class="game-card t-horror">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">👻 Backrooms хоррор</div>
+        <h3>APEIROPHOBIA</h3>
+        <p class="gc-desc">Длинный, атмосферный, местами по-настоящему пугающий. Один из лучших в жанре.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Реально страшно</div><div class="pc-item">Много уровней</div><div class="pc-item">Оригинальность</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Некоторые уровни скучны</div><div class="pc-item">Оптимизация</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.4 — Обязателен</span></div>
+      </div>
+      <div class="game-card t-stealth">
+        <span class="gc-badge optional">~ КОСМЕТИКА</span>
+        <div class="gc-type">🕵️ Стелс / Ограбление</div>
+        <h3>ENTRY POINT</h3>
+        <p class="gc-desc">Лучшая стелс-игра на Roblox. Ограбления с планированием, разные пути, командная работа.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Глубокий геймплей</div><div class="pc-item">Много стратегий</div><div class="pc-item">Без p2w</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Редкие обновления</div><div class="pc-item">Нужны друзья</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s5">★★★★★</span><span class="gc-score">// 4.8 — Скрытый шедевр</span></div>
+      </div>
+      <div class="game-card t-survival">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">🔬 Тактическое выживание</div>
+        <h3>COLD WAR (CW)</h3>
+        <p class="gc-desc">Командное тактическое выживание. Требует координации и стратегии.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Тактическая глубина</div><div class="pc-item">Командный геймплей</div><div class="pc-item">Честный баланс</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Нужна команда</div><div class="pc-item">Высокий порог</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.1 — С командой огонь</span></div>
+      </div>
+      <div class="game-card t-horror">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">👹 Асимметричный хоррор</div>
+        <h3>SURVIVE THE KILLER</h3>
+        <p class="gc-desc">Играй за выжившего или маньяка. С друзьями — одно из лучших переживаний на платформе.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Весело в компании</div><div class="pc-item">Разные убийцы</div><div class="pc-item">Честно</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Одному скучновато</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.0 — С друзьями 10/10</span></div>
+      </div>
+      <div class="game-card t-pvp">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">🥋 Мелее PvP</div>
+        <h3>COMBAT WARRIORS</h3>
+        <p class="gc-desc">Быстрый мелее-PvP. Комбо, парирования, уворот — нужен реальный скилл.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Огромный онлайн</div><div class="pc-item">Глубокая боёвка</div><div class="pc-item">Быстрый старт</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Очень токсично</div><div class="pc-item">Иногда читеры</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.2 — Мелее топ</span></div>
+      </div>
+      <div class="game-card t-stealth">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">🕵️ Детектив / Social</div>
+        <h3>MURDER MYSTERY 2</h3>
+        <p class="gc-desc">Убийца, шериф, невинные. Умение читать людей и блефовать решает исход.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Читаешь людей</div><div class="pc-item">Огромный онлайн</div><div class="pc-item">Легко войти</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Иногда читеры</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.0 — Социальный топ</span></div>
+      </div>
+      <div class="game-card t-shooter">
+        <span class="gc-badge free">✓ FREE TO WIN</span>
+        <div class="gc-type">🔫 Тактический FPS</div>
+        <h3>CRIMINALITY</h3>
+        <p class="gc-desc">Реалистичный тактический шутер с отдачей и укрытиями. Один из самых хардкорных шутеров на Roblox.</p>
+        <div class="pc-grid">
+          <div class="pc-col pros"><div class="pc-title">✓ ПЛЮСЫ</div><div class="pc-item">Реальная тактика</div><div class="pc-item">Хардкор геймплей</div><div class="pc-item">Честный баланс</div></div>
+          <div class="pc-col cons"><div class="pc-title">✗ МИНУСЫ</div><div class="pc-item">Сложно новичкам</div><div class="pc-item">Малый онлайн</div></div>
+        </div>
+        <div class="gc-rating"><span class="gc-stars s4">★★★★☆</span><span class="gc-score">// 4.3 — Хардкор топ</span></div>
+      </div>
+    </div>
+
+    <div class="stitle" id="st-tips">💡 Как не попасть в ловушку</div>
+    <div class="tips-list">
+      <div class="tip-item"><div class="tip-num">01</div><div class="tip-content"><h4 id="t1-h">Смотри на механику прогресса</h4><p id="t1-p">Если игра замедляет прогресс и предлагает купить ускорение — это ловушка. Любая игра где кнопка «купить» влияет на силу в PvP — мусор.</p></div></div>
+      <div class="tip-item"><div class="tip-num">02</div><div class="tip-content"><h4 id="t2-h">Gamepass = не всегда плохо</h4><p id="t2-p">Если gamepass даёт только внешний вид — это нормально. Плохо когда он даёт реальное игровое преимущество в бою или прогрессе.</p></div></div>
+      <div class="tip-item"><div class="tip-num">03</div><div class="tip-content"><h4 id="t3-h">«Simulator» — красный флаг</h4><p id="t3-p">99% игр с «Simulator» в названии — кликеры с донат-механиками. Подходи с осторожностью.</p></div></div>
+      <div class="tip-item"><div class="tip-num">04</div><div class="tip-content"><h4 id="t4-h">Высокий рейтинг ≠ качество</h4><p id="t4-p">В Roblox боты и спам-лайки поднимают мусор в топ. Читай комментарии, смотри видео на ютубе перед игрой.</p></div></div>
+      <div class="tip-item"><div class="tip-num">05</div><div class="tip-content"><h4 id="t5-h">Играй с людьми</h4><p id="t5-p">Даже средняя игра становится крутой в хорошей компании. Зови друзей в Phantom Forces или Survive the Killer.</p></div></div>
+    </div>
+
+    <div class="stitle" id="st-comm">💬 Твоё мнение</div>
+    <div class="comments-section">
+      <div class="rate-box">
+        <h3 id="rate-title">Оценить сайт</h3>
+        <div class="star-row" id="star-row">
+          <span data-v="1">⭐</span><span data-v="2">⭐</span>
+          <span data-v="3">⭐</span><span data-v="4">⭐</span><span data-v="5">⭐</span>
+        </div>
+        <div class="rate-lbl" id="rate-lbl">Выбери оценку</div>
+        <div class="bar-list" id="bar-list"></div>
+        <div class="overall">
+          <div class="overall-num" id="overall-num">—</div>
+          <div class="overall-sub" id="overall-sub">Оценок пока нет</div>
+        </div>
+      </div>
+
+      <div class="cf-wrap">
+        <div class="av-pick-label" id="av-label">Выбери аватар</div>
+        <div class="av-pick-grid" id="av-pick"></div>
+        <div class="name-row">
+          <input id="cf-name" class="cf-input" type="text" placeholder="Твой никнейм" maxlength="24">
+          <button class="rename-btn" id="rename-btn" onclick="unlockName()" style="display:none">✏️ ИЗМЕНИТЬ НИК <span id="rename-left"></span></button>
+        </div>
+        <div class="name-lock-info" id="name-lock-info" style="display:none">
+          <span class="lock-icon">🔒</span>
+          <span class="lock-msg" id="name-lock-msg"></span>
+        </div>
+        <div class="cf-row">
+          <button class="cf-btn" id="cf-btn" onclick="submitComment()">ОТПРАВИТЬ</button>
+        </div>
+        <textarea id="cf-text" class="cf-input" placeholder="Напиши своё мнение о сайте, советы по играм, или просто поздоровайся 👋" maxlength="500"></textarea>
+      </div>
+
+      <div class="clist" id="clist"></div>
+    </div>
+  </div>
+
+  <!-- PAGE: AUTHOR -->
+  <div id="page-author" class="page">
+    <div class="author-card">
+      <div class="a-avatar">😈</div>
+      <div class="a-name">YTFlorikHorrors</div>
+      <div class="a-role" id="a-role">// Создатель сайта • Roblox игрок //</div>
+      <p class="a-bio" id="a-bio">Привет! Я создал этот сайт потому что устал видеть как новые игроки тратят время на мусор. Roblox — большая платформа с реально крутыми играми, но найти их сложно. Здесь я собрал всё что узнал за время игры — без спонсоров, без рекламы, только честный опыт. Если есть вопросы или хочешь поговорить — пиши в Telegram!</p>
+      <a class="tg-btn" href="https://t.me/SiteAuthor" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#5bc8f5"><path d="M11.944 0A12 12 0 1 0 24 12 12.014 12.014 0 0 0 11.944 0zm4.97 7.667l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L6.91 14.204l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.13.834.801z"/></svg>
+        @SiteAuthor
+      </a>
+      <div class="a-stats">
+        <div class="a-stat"><div class="sn">12+</div><div class="sl" id="stat1">Обзоров игр</div></div>
+        <div class="a-stat"><div class="sn">∞</div><div class="sl" id="stat2">Часов в Roblox</div></div>
+        <div class="a-stat"><div class="sn">0₽</div><div class="sl" id="stat3">Рекламы</div></div>
+        <div class="a-stat"><div class="sn">100%</div><div class="sl" id="stat4">Честность</div></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+'use strict';
+
+const T = {
+  ru: {
+    nav:       ['Страница', 'Важное', 'Автор'],
+    tagline:   '// Честный Roblox Guide — без рекламы, без лжи //',
+    heroTitle: 'ROBLOX GUIDE',
+    heroSub:   '// Честные советы от реального игрока //',
+    heroP:     'Добро пожаловать. Этот сайт создан с одной целью — <strong style="color:var(--gold2)">сэкономить твоё время</strong>. Roblox огромен, и большинство плейсов созданы не для твоего удовольствия, а чтобы выбить из тебя деньги. Здесь честные обзоры без рекламы и спонсоров.',
+    ic: [
+      ['Зачем этот сайт?',   'Сотни плейсов каждый месяц — и 90% мусор. Помогаем разобраться: что играть, что игнорировать.'],
+      ['Кто это делает?',    '<strong style="color:var(--gold2)">YTFlorikHorrors</strong> — игрок который устал от кликеров и симуляторов. Только личный опыт.'],
+      ['Что здесь найдёшь?', 'Обзоры шутеров, PvP, хоррора и выживания. Честный список и чёрный список.'],
+      ['Твоё мнение важно',  'В разделе <strong style="color:var(--red3)">«Важное»</strong> можно оставить оценку и комментарий.'],
+    ],
+    wbTitle:'Честно и без цензуры', wbSub:'Здесь нет рекламы, нет спонсоров — только реальный опыт',
+    stShame:'💀 Стена позора — не трать время', stGood:'🏆 Реально стоит играть',
+    stTips:'💡 Как не попасть в ловушку', stComm:'💬 Твоё мнение',
+    shameAdv:'Будем честны: <span class="hl-red">большинство популярных плейсов — ловушки</span>. Завлекают крутыми превью, а внутри — гринд или кнопка «купи». <span class="hl-green">Это не игры — это казино для детей.</span>',
+    goodAdv:'Игры где <span class="hl-green">скилл важнее кошелька</span>. Ты можешь быть лучшим без единого потраченного рубля.',
+    rateTitle:'Оценить сайт', rateDef:'Выбери оценку',
+    rateWords:['','Плохо 😒','Так себе 😑','Нормально 😐','Хорошо 👍','Отлично! 🔥'],
+    noRatings:'Оценок пока нет', nRatings:'оценок',
+    cfName:'Твой никнейм', cfText:'Напиши своё мнение или просто поздоровайся 👋', cfBtn:'ОТПРАВИТЬ',
+    avLabel:'Выбери аватар',
+    noComm:'// КОММЕНТАРИЕВ ПОКА НЕТ — БУДЬ ПЕРВЫМ //',
+    replyPh:'Ответить...', replySend:'ОТВЕТИТЬ', replyBtn:'↩ Ответить', hideReply:'Свернуть',
+    aRole:'// Создатель сайта • Roblox игрок //',
+    aBio:'Привет! Я создал этот сайт потому что устал видеть как новые игроки тратят время на мусор. Здесь всё что узнал за время игры — без спонсоров, без рекламы, только честный опыт. Есть вопросы — пиши в Telegram!',
+    stats:['Обзоров игр','Часов в Roblox','Рекламы','Честность'],
+    tips:[
+      ['Смотри на механику прогресса','Если игра замедляет прогресс и предлагает купить ускорение — это ловушка. Кнопка «купить» влияет на силу в PvP — мусор.'],
+      ['Gamepass = не всегда плохо','Если gamepass даёт только внешний вид — нормально. Плохо когда он даёт преимущество в бою.'],
+      ['«Simulator» — красный флаг','99% игр с «Simulator» в названии — кликеры с донат-механиками. Подходи с осторожностью.'],
+      ['Высокий рейтинг ≠ качество','В Roblox боты поднимают мусор в топ. Читай комментарии, смотри видео на ютубе.'],
+      ['Играй с людьми','Даже средняя игра становится крутой в хорошей компании. Зови друзей!'],
+    ],
+    toasts:{like:'🔥 Лайк!',unlike:'Лайк убран',comment:'✓ Комментарий добавлен!',reply:'↩ Ответ добавлен!',rate:'✓ Оценка сохранена!',empty:'⚠ Напиши что-нибудь!',short:'⚠ Слишком коротко',langSet:'🇷🇺 Русский выбран',react:'Реакция добавлена!',nameLocked:'🔒 Ник заблокирован после первого коммента',nameChanged:'✓ Можешь ввести новый ник и отправить',nameFrozen:'❌ Ник уже был изменён — больше нельзя'},
+    namelock:{
+      locked:'Ник заблокирован — изменение 1 раз',
+      frozen:'Ник заморожен навсегда',
+      renameBtn:'✏️ ИЗМЕНИТЬ НИК',
+      changesLeft:'(осталось: ',
+    },
+    anonName:'Анонимный игрок',
+  },
+  en: {
+    nav:       ['About','Important','Author'],
+    tagline:   '// Honest Roblox Guide — no ads, no lies //',
+    heroTitle: 'ROBLOX GUIDE',
+    heroSub:   '// Real talk from a real player //',
+    heroP:     'Welcome. This site has one goal — <strong style="color:var(--gold2)">save your time</strong>. Roblox is huge, and most places are built to drain your wallet. Here you\'ll find honest reviews — no ads, no sponsors.',
+    ic:[
+      ['Why this site?','Hundreds of places every month — 90% is garbage. We help you navigate: what to play, what to skip.'],
+      ['Who made this?','<strong style="color:var(--gold2)">YTFlorikHorrors</strong> — a player tired of clickers and simulators. Personal experience only.'],
+      ['What will you find?','Reviews of shooters, PvP, horror and survival. An honest list and a blacklist.'],
+      ['Your opinion matters','In the <strong style="color:var(--red3)">«Important»</strong> section you can leave a rating and comment.'],
+    ],
+    wbTitle:'Straight talk, no filters', wbSub:'No ads, no sponsors — just real experience and direct words',
+    stShame:'💀 Wall of Shame — don\'t waste your time', stGood:'🏆 Actually worth playing',
+    stTips:'💡 How to avoid the traps', stComm:'💬 Your opinion',
+    shameAdv:'<span class="hl-red">Most popular Roblox places are traps</span>. They lure you with cool thumbnails, but inside — endless grind or a "buy" button. <span class="hl-green">These aren\'t games — they\'re casinos for kids.</span>',
+    goodAdv:'Games where <span class="hl-green">skill beats wallet</span>. You can be the best without spending a single coin.',
+    rateTitle:'Rate this site', rateDef:'Pick a rating',
+    rateWords:['','Bad 😒','Meh 😑','Okay 😐','Good 👍','Awesome! 🔥'],
+    noRatings:'No ratings yet', nRatings:'ratings',
+    cfName:'Your nickname', cfText:'Write your opinion or just say hi 👋', cfBtn:'SEND',
+    avLabel:'Choose avatar',
+    noComm:'// NO COMMENTS YET — BE THE FIRST //',
+    replyPh:'Reply...', replySend:'REPLY', replyBtn:'↩ Reply', hideReply:'Collapse',
+    aRole:'// Site Creator • Roblox Player //',
+    aBio:'Hey! I built this site because I got tired of watching new players waste time on garbage. Here\'s everything I\'ve learned — no sponsors, no ads, just honest experience. Questions? Write me on Telegram!',
+    stats:['Game reviews','Hours in Roblox','Ads','Honesty'],
+    tips:[
+      ['Check the progression system','If a game slows your progress and offers to sell you speed — it\'s a trap. Buying affects PvP power — garbage.'],
+      ['Gamepass ≠ always bad','If a gamepass only gives cosmetics — that\'s fine. Bad when it gives real combat advantage.'],
+      ['"Simulator" = red flag','99% of games with "Simulator" in the name are clickers with pay mechanics.'],
+      ['High rating ≠ quality','Bots boost garbage to the top on Roblox. Read comments, watch YouTube before playing.'],
+      ['Play with people','Even an average game becomes great with good company. Invite friends!'],
+    ],
+    toasts:{like:'🔥 Liked!',unlike:'Like removed',comment:'✓ Comment added!',reply:'↩ Reply added!',rate:'✓ Rating saved!',empty:'⚠ Write something!',short:'⚠ Too short',langSet:'🇬🇧 English selected',react:'Reaction added!',nameLocked:'🔒 Nickname locked after first comment',nameChanged:'✓ Enter a new nickname and submit',nameFrozen:'❌ Nickname already changed — no more changes'},
+    namelock:{
+      locked:'Nickname locked — 1 change allowed',
+      frozen:'Nickname frozen forever',
+      renameBtn:'✏️ CHANGE NAME',
+      changesLeft:'(left: ',
+    },
+    anonName:'Anonymous player',
+  }
+};
+
+const AVATARS = [
+  '😎','🔥','👾','😈','💀','⚔️','🎮','🤖','👻','🎯',
+  '🦊','🐺','🐉','🦁','🐯','👽','🤡','🎃','🦇','🕷️',
+  '💣','🗡️','🏆','⚡','🌑','🔮','💎','🧠','🩸','🎭'
+];
+const AV_COLORS = [
+  'linear-gradient(135deg,#8b0000,#4a0000)',
+  'linear-gradient(135deg,#c0392b,#7b241c)',
+  'linear-gradient(135deg,#6c3483,#4a235a)',
+  'linear-gradient(135deg,#1a5276,#0e3460)',
+  'linear-gradient(135deg,#0e6655,#0b4a3f)',
+  'linear-gradient(135deg,#7d6608,#4d4000)',
+  'linear-gradient(135deg,#1b2631,#0a0f14)',
+];
+const REACTIONS = ['🔥','😂','😢','😮','👍','👎','💀','❤️'];
+
+let lang         = 'ru';
+let selectedStar = 0;
+let selectedAv   = AVATARS[0];
+
+/* ── STORAGE ─────────────────────────────────────────────
+   FIX: Отдельные функции load/save/remove.
+   save(key, null) раньше писал строку "null" → при чтении
+   JSON.parse("null") возвращал null, но если браузер
+   кешировал ошибку — ключ оставался. Теперь используем
+   явный removeItem() чтобы гарантированно удалять ключи.
+─────────────────────────────────────────────────────────── */
+function load(k, def) {
+  try {
+    const v = localStorage.getItem(k);
+    if (v === null) return def;
+    const parsed = JSON.parse(v);
+    // FIX: если в storage осталась строка "null" — считаем как отсутствие
+    if (parsed === null) return def;
+    return parsed;
+  } catch { return def; }
+}
+function save(k, v) {
+  try { localStorage.setItem(k, JSON.stringify(v)); } catch {}
+}
+function remove(k) {
+  try { localStorage.removeItem(k); } catch {}
+}
+
+/* ── TOAST ─────────────────────────────────────────────── */
+let toastTimer;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+/* ── PAGE NAV ───────────────────────────────────────────── */
+function openPage(name, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+/* ── LANGUAGE ───────────────────────────────────────────── */
+function openLangOverlay() {
+  const ol = document.getElementById('lang-overlay');
+  ol.style.display = 'flex';
+  ol.style.opacity = '1';
+}
+function chooseLang(l) {
+  lang = l; save('lang', l); applyLang();
+  const ol = document.getElementById('lang-overlay');
+  ol.style.transition = 'opacity .35s'; ol.style.opacity = '0';
+  setTimeout(() => { ol.style.display='none'; ol.style.transition=''; }, 360);
+  toast(T[l].toasts.langSet);
+}
+function applyLang() {
+  const t = T[lang];
+  document.getElementById('nav-home').textContent      = t.nav[0];
+  document.getElementById('nav-important').textContent = t.nav[1];
+  document.getElementById('nav-author').textContent    = t.nav[2];
+  document.getElementById('tagline').textContent       = t.tagline;
+  document.getElementById('hero-title').textContent    = t.heroTitle;
+  document.getElementById('hero-sub').textContent      = t.heroSub;
+  document.getElementById('hero-p').innerHTML          = t.heroP;
+  ['ic1','ic2','ic3','ic4'].forEach((id,i) => {
+    document.getElementById(id+'-t').textContent = t.ic[i][0];
+    document.getElementById(id+'-p').innerHTML   = t.ic[i][1];
+  });
+  document.getElementById('wb-title').textContent   = t.wbTitle;
+  document.getElementById('wb-sub').textContent     = t.wbSub;
+  document.getElementById('st-shame').textContent   = t.stShame;
+  document.getElementById('st-good').textContent    = t.stGood;
+  document.getElementById('st-tips').textContent    = t.stTips;
+  document.getElementById('st-comm').textContent    = t.stComm;
+  document.getElementById('shame-advice').innerHTML = t.shameAdv;
+  document.getElementById('good-advice').innerHTML  = t.goodAdv;
+  [1,2,3,4,5].forEach(i => {
+    document.getElementById('t'+i+'-h').textContent = t.tips[i-1][0];
+    document.getElementById('t'+i+'-p').textContent = t.tips[i-1][1];
+  });
+  document.getElementById('rate-title').textContent  = t.rateTitle;
+  document.getElementById('av-label').textContent    = t.avLabel;
+  const rl = document.getElementById('rate-lbl');
+  rl.textContent = selectedStar ? t.rateWords[selectedStar] : t.rateDef;
+  document.getElementById('cf-name').placeholder = t.cfName;
+  document.getElementById('cf-text').placeholder = t.cfText;
+  document.getElementById('cf-btn').textContent   = t.cfBtn;
+  document.getElementById('a-role').textContent   = t.aRole;
+  document.getElementById('a-bio').textContent    = t.aBio;
+  ['stat1','stat2','stat3','stat4'].forEach((id,i) => {
+    document.getElementById(id).textContent = t.stats[i];
+  });
+  renderBars();
+  renderComments();
+  applyNameLock();
+}
+
+/* ── AVATAR PICKER ──────────────────────────────────────── */
+function initAvatarPicker() {
+  const grid = document.getElementById('av-pick');
+  grid.innerHTML = '';
+  const saved = load('myAvatar', AVATARS[0]);
+  selectedAv = saved;
+  AVATARS.forEach(em => {
+    const s = document.createElement('span');
+    s.textContent = em;
+    s.title = em;
+    if (em === selectedAv) s.classList.add('av-sel');
+    s.addEventListener('click', () => {
+      grid.querySelectorAll('span').forEach(x => x.classList.remove('av-sel'));
+      s.classList.add('av-sel');
+      selectedAv = em;
+      save('myAvatar', em);
+    });
+    grid.appendChild(s);
+  });
+}
+
+/* ── RATINGS ────────────────────────────────────────────── */
+function initStars() {
+  const row = document.getElementById('star-row');
+  row.querySelectorAll('span').forEach(s => {
+    const v = +s.dataset.v;
+    s.addEventListener('mouseenter', () => {
+      row.querySelectorAll('span').forEach((x,i) => x.classList.toggle('lit', i < v));
+      document.getElementById('rate-lbl').textContent = T[lang].rateWords[v];
+    });
+    s.addEventListener('mouseleave', () => {
+      row.querySelectorAll('span').forEach((x,i) => x.classList.toggle('lit', i < selectedStar));
+      document.getElementById('rate-lbl').textContent = selectedStar ? T[lang].rateWords[selectedStar] : T[lang].rateDef;
+    });
+    s.addEventListener('click', () => {
+      selectedStar = v;
+      row.querySelectorAll('span').forEach((x,i) => x.classList.toggle('lit', i < v));
+      saveRating(v);
+    });
+  });
+  const my = load('myRating', 0);
+  if (my) { selectedStar = my; row.querySelectorAll('span').forEach((x,i) => x.classList.toggle('lit', i < my)); }
+}
+function saveRating(v) {
+  const ratings = load('ratings', []);
+  const prev = load('myRating', 0);
+  if (prev) { const idx = ratings.indexOf(prev); if (idx > -1) ratings.splice(idx,1); }
+  ratings.push(v); save('ratings', ratings); save('myRating', v);
+  renderBars(); toast(T[lang].toasts.rate);
+}
+function renderBars() {
+  const ratings = load('ratings', []);
+  const numEl = document.getElementById('overall-num');
+  const subEl = document.getElementById('overall-sub');
+  const bl    = document.getElementById('bar-list');
+  const t = T[lang];
+  if (!ratings.length) { numEl.textContent='—'; subEl.textContent=t.noRatings; bl.innerHTML=''; return; }
+  const avg = (ratings.reduce((a,b)=>a+b,0)/ratings.length).toFixed(1);
+  numEl.textContent = avg; subEl.textContent = ratings.length+' '+t.nRatings;
+  const counts=[0,0,0,0,0]; ratings.forEach(r=>counts[r-1]++);
+  const mx = Math.max(...counts);
+  bl.innerHTML = [5,4,3,2,1].map(star=>{
+    const cnt=counts[star-1], w=mx?Math.round(cnt/mx*100):0;
+    return `<div class="bar-row"><span class="bar-lbl">${star}★</span><div class="bar-bg"><div class="bar-fill" style="width:${w}%"></div></div><span class="bar-cnt">${cnt}</span></div>`;
+  }).join('');
+}
+
+/* ── COMMENTS ───────────────────────────────────────────── */
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// Защита от двойного клика — блокируем кнопку на 1.5с после отправки
+let submitLocked = false;
+function timeAgo(ts) {
+  const m = Math.floor((Date.now()-ts)/60000);
+  if (m<1)  return lang==='ru'?'только что':'just now';
+  if (m<60) return lang==='ru'?`${m} мин назад`:`${m}m ago`;
+  const h=Math.floor(m/60);
+  if (h<24) return lang==='ru'?`${h} ч назад`:`${h}h ago`;
+  return lang==='ru'?`${Math.floor(h/24)} дн назад`:`${Math.floor(h/24)}d ago`;
+}
+function randomColor() { return AV_COLORS[Math.floor(Math.random()*AV_COLORS.length)]; }
+
+/* ── NAME LOCK ──────────────────────────────────────────────
+   Логика:
+   - hasPosted     : false → true после первого коммента
+   - nameChangesLeft: 1 → 0 после использования переименования
+   - Состояния поля:
+     • Не постил → поле открыто, кнопка «Изменить» скрыта
+     • Постил, changesLeft=1 → поле заблокировано, кнопка видна
+     • Постил, changesLeft=0 → поле заблокировано, кнопка отключена (заморожен)
+     • В режиме редактирования (renaming=true) → поле открыто, ник не сохранён до отправки
+─────────────────────────────────────────────────────────── */
+let renaming = false; // флаг: пользователь сейчас меняет ник
+
+function applyNameLock() {
+  const hasPosted      = load('hasPosted', false);
+  const changesLeft    = load('nameChangesLeft', 1);
+  const lockedName     = load('lockedName', '');
+  const inp            = document.getElementById('cf-name');
+  const renameBtn      = document.getElementById('rename-btn');
+  const lockInfo       = document.getElementById('name-lock-info');
+  const lockMsg        = document.getElementById('name-lock-msg');
+  const t              = T[lang];
+
+  if (!hasPosted) {
+    // Ещё не постил — ник свободен
+    inp.classList.remove('locked');
+    inp.removeAttribute('disabled');
+    renameBtn.style.display = 'none';
+    lockInfo.style.display  = 'none';
+    renaming = false;
+    return;
+  }
+
+  // Уже постил — восстанавливаем сохранённый ник в поле
+  if (!renaming && lockedName) inp.value = lockedName;
+
+  if (changesLeft > 0 && !renaming) {
+    // Заблокирован, но можно изменить 1 раз
+    inp.classList.add('locked');
+    inp.setAttribute('disabled', '');
+    renameBtn.style.display   = '';
+    renameBtn.disabled        = false;
+    renameBtn.innerHTML       = `${t.namelock.renameBtn} <span id="rename-left">${t.namelock.changesLeft}1)</span>`;
+    lockInfo.style.display    = 'flex';
+    lockMsg.className         = 'lock-msg';
+    lockMsg.textContent       = t.namelock.locked;
+  } else if (changesLeft <= 0 && !renaming) {
+    // Заморожен навсегда
+    inp.classList.add('locked');
+    inp.setAttribute('disabled', '');
+    renameBtn.style.display   = '';
+    renameBtn.disabled        = true;
+    renameBtn.innerHTML       = `🔒 ЗАМОРОЖЕН`;
+    lockInfo.style.display    = 'flex';
+    lockMsg.className         = 'lock-msg frozen';
+    lockMsg.textContent       = t.namelock.frozen;
+  } else if (renaming) {
+    // Режим редактирования ника
+    inp.classList.remove('locked');
+    inp.removeAttribute('disabled');
+    inp.focus();
+    renameBtn.style.display   = 'none';
+    lockInfo.style.display    = 'flex';
+    lockMsg.className         = 'lock-msg';
+    lockMsg.textContent       = lang === 'ru' ? '✏️ Введи новый ник и нажми ОТПРАВИТЬ' : '✏️ Enter new nickname and press SEND';
+  }
+}
+
+function unlockName() {
+  const hasPosted   = load('hasPosted', false);
+  const changesLeft = load('nameChangesLeft', 1);
+  if (!hasPosted || changesLeft <= 0) return;
+  renaming = true;
+  const inp = document.getElementById('cf-name');
+  inp.value = ''; // очищаем чтобы пользователь ввёл новый
+  applyNameLock();
+  toast(T[lang].toasts.nameChanged);
+}
+
+function submitComment() {
+  if (submitLocked) return; // двойной клик — игнорируем
+  const t = T[lang];
+  const inp          = document.getElementById('cf-name');
+  const hasPosted    = load('hasPosted', false);
+  const changesLeft  = load('nameChangesLeft', 1);
+
+  // Определяем имя
+  let name;
+  if (!hasPosted) {
+    // Первый раз — берём из поля
+    name = inp.value.trim() || t.anonName;
+  } else if (renaming) {
+    // Меняем ник — берём из поля, уменьшаем счётчик
+    name = inp.value.trim() || t.anonName;
+  } else {
+    // Уже постил, не меняет ник — берём сохранённый
+    name = load('lockedName', '') || t.anonName;
+  }
+
+  const text = document.getElementById('cf-text').value.trim();
+  if (!text)         { toast(t.toasts.empty); return; }
+  if (text.length<3) { toast(t.toasts.short); return; }
+
+  // Блокируем кнопку — защита от двойного клика
+  submitLocked = true;
+  const cfBtn = document.getElementById('cf-btn');
+  if (cfBtn) { cfBtn.disabled = true; cfBtn.style.opacity = '0.5'; }
+
+  const comments = load('comments',[]);
+
+  // Дополнительная защита: проверяем нет ли уже комментария с таким же текстом за последние 3 секунды
+  const now = Date.now();
+  const isDuplicate = comments.length > 0 &&
+    comments[0].text === text.slice(0,500) &&
+    (now - comments[0].ts) < 3000;
+
+  if (!isDuplicate) {
+    comments.unshift({
+      id: now, name: name.slice(0,24), text: text.slice(0,500),
+      ts: now, stars: selectedStar,
+      emoji: selectedAv, color: randomColor(),
+      likes:0, reactions:{}, replies:[]
+    });
+    save('comments', comments.slice(0,100));
+  }
+
+  // Обновляем состояние блокировки
+  if (!hasPosted) {
+    save('hasPosted', true);
+    save('lockedName', name);
+    save('nameChangesLeft', 1);
+    toast(t.toasts.comment + ' ' + t.toasts.nameLocked);
+  } else if (renaming) {
+    save('lockedName', name);
+    save('nameChangesLeft', Math.max(0, changesLeft - 1));
+    renaming = false;
+    toast(t.toasts.comment);
+  } else {
+    toast(t.toasts.comment);
+  }
+
+  document.getElementById('cf-text').value = '';
+  applyNameLock();
+  renderComments();
+
+  // Разблокируем кнопку через 1.5с
+  setTimeout(() => {
+    submitLocked = false;
+    if (cfBtn) { cfBtn.disabled = false; cfBtn.style.opacity = ''; }
+  }, 1500);
+}
+
+/* FIX: Лайк — хирургическое обновление только одной кнопки,
+   без полного ре-рендера. Форма ответа не закрывается. */
+function toggleLike(id) {
+  const liked = load('liked',[]);
+  const comments = load('comments',[]);
+  const c = comments.find(x=>x.id===id); if(!c) return;
+  const t = T[lang];
+  const isNowLiked = !liked.includes(id);
+  if (!isNowLiked) {
+    c.likes = Math.max(0, c.likes-1);
+    save('liked', liked.filter(x=>x!==id));
+    toast(t.toasts.unlike);
+  } else {
+    c.likes++;
+    liked.push(id);
+    save('liked', liked);
+    toast(t.toasts.like);
+  }
+  save('comments', comments);
+
+  // FIX: Точечное обновление DOM — только кнопка лайка
+  const btn = document.querySelector(`#citem-${id} .act-btn:not(.reply-btn)`);
+  if (btn) {
+    btn.classList.toggle('liked', isNowLiked);
+    btn.innerHTML = `${isNowLiked?'❤️':'🤍'} ${c.likes}`;
+  }
+}
+
+/* FIX: Реакция — точечное обновление конкретного элемента.
+   Главный фикс дублирования: используем remove() вместо save(key, null).
+   save(key, null) писал строку "null" в localStorage — при следующем чтении
+   JSON.parse("null") === null, функция думала что реакции нет → дублировала.
+   Теперь removeItem() реально удаляет ключ. */
+function addReaction(cid, emoji) {
+  const comments = load('comments',[]);
+  const c = comments.find(x=>x.id===cid); if(!c) return;
+  if (!c.reactions) c.reactions = {};
+
+  const myKey    = 'react_' + cid;
+  const myReacted = load(myKey, null); // null только если ключа нет
+
+  if (myReacted === emoji) {
+    // Снять свою реакцию
+    c.reactions[emoji] = Math.max(0, (c.reactions[emoji]||0) - 1);
+    if (!c.reactions[emoji]) delete c.reactions[emoji];
+    remove(myKey); // FIX: явное удаление ключа
+  } else {
+    // Убрать предыдущую реакцию если была
+    if (myReacted && c.reactions[myReacted] !== undefined) {
+      c.reactions[myReacted] = Math.max(0, c.reactions[myReacted] - 1);
+      if (!c.reactions[myReacted]) delete c.reactions[myReacted];
+    }
+    // Добавить новую
+    c.reactions[emoji] = (c.reactions[emoji]||0) + 1;
+    save(myKey, emoji);
+    toast(T[lang].toasts.react);
+  }
+  save('comments', comments);
+
+  // FIX: Точечное обновление только react-row нужного комментария
+  updateReactRow(cid, c.reactions, load(myKey, null));
+}
+
+/* Обновляет только строку реакций без пересборки всего DOM */
+function updateReactRow(cid, reactions, myReact) {
+  const row = document.querySelector(`#citem-${cid} .react-row`);
+  if (!row) return;
+  row.innerHTML = REACTIONS.map(em => {
+    const cnt    = (reactions && reactions[em]) || 0;
+    const active = myReact === em ? ' reacted' : '';
+    return `<button class="react-btn${active}" onclick="addReaction(${cid},'${em}')" title="${em}">
+      ${em}${cnt ? `<span class="react-cnt">${cnt}</span>` : ''}
+    </button>`;
+  }).join('');
+}
+
+function toggleReplyForm(cid) {
+  const wrap = document.getElementById('rf-'+cid);
+  if (!wrap) return;
+  const isOpen = wrap.classList.contains('open');
+  wrap.classList.toggle('open', !isOpen);
+  if (!isOpen) {
+    const inp = wrap.querySelector('.reply-input');
+    if (inp) setTimeout(()=>inp.focus(), 50);
+  }
+}
+
+function submitReply(cid) {
+  const t = T[lang];
+  const inp = document.querySelector('#rf-'+cid+' .reply-input');
+  if (!inp) return;
+  const text = inp.value.trim();
+  if (!text)         { toast(t.toasts.empty); return; }
+  if (text.length<2) { toast(t.toasts.short); return; }
+  const cfName = document.getElementById('cf-name').value.trim() || t.anonName;
+  const comments = load('comments',[]);
+  const c = comments.find(x=>x.id===cid); if(!c) return;
+  if (!c.replies) c.replies=[];
+  c.replies.push({
+    id: Date.now(), name: cfName.slice(0,24),
+    text: text.slice(0,300), ts: Date.now(),
+    emoji: selectedAv, color: randomColor()
+  });
+  save('comments', comments);
+  inp.value='';
+  document.getElementById('rf-'+cid).classList.remove('open');
+
+  // FIX: Добавляем только новый ответ в DOM без полного ре-рендера
+  const newReply = c.replies[c.replies.length-1];
+  const replyHtml = `
+    <div class="reply-item" id="reply-${newReply.id}">
+      <div class="reply-avatar" style="background:${newReply.color}">${newReply.emoji}</div>
+      <div class="reply-content">
+        <span class="rname">${esc(newReply.name)}</span><span class="rtime">${timeAgo(newReply.ts)}</span>
+        <div class="rbody">${esc(newReply.text)}</div>
+      </div>
+    </div>`;
+
+  let repliesList = document.querySelector(`#citem-${cid} .replies-list`);
+  if (!repliesList) {
+    repliesList = document.createElement('div');
+    repliesList.className = 'replies-list';
+    document.getElementById('citem-'+cid).appendChild(repliesList);
+  }
+  repliesList.insertAdjacentHTML('beforeend', replyHtml);
+
+  // Обновляем счётчик на кнопке «Ответить»
+  const replyBtn = document.querySelector(`#citem-${cid} .reply-btn`);
+  if (replyBtn) replyBtn.innerHTML = `${t.replyBtn} (${c.replies.length})`;
+
+  toast(t.toasts.reply);
+}
+
+/* FIX: renderComments сохраняет состояние открытых форм
+   и значения введённых текстов перед ре-рендером,
+   затем восстанавливает их после — форма не сбрасывается. */
+function renderComments() {
+  const list = document.getElementById('clist');
+
+  // Сохраняем состояние перед ре-рендером
+  const openForms   = {};
+  const inputValues = {};
+  document.querySelectorAll('.reply-form-wrap').forEach(el => {
+    const cid = el.id.replace('rf-','');
+    openForms[cid] = el.classList.contains('open');
+    const inp = el.querySelector('.reply-input');
+    if (inp) inputValues[cid] = inp.value;
+  });
+
+  const comments = load('comments',[]);
+  const liked    = load('liked',[]);
+  const t        = T[lang];
+
+  if (!comments.length) {
+    list.innerHTML = `<div class="no-comments">${t.noComm}</div>`;
+    return;
+  }
+
+  // Читаем все myReact ключи разом — не в цикле рендера
+  const myReacts = {};
+  comments.forEach(c => { myReacts[c.id] = load('react_'+c.id, null); });
+
+  list.innerHTML = comments.map(c => {
+    const stars    = c.stars ? '⭐'.repeat(c.stars) : '';
+    const isLiked  = liked.includes(c.id);
+    const myReact  = myReacts[c.id];
+
+    const reactBar = REACTIONS.map(em => {
+      const cnt    = (c.reactions && c.reactions[em]) || 0;
+      const active = myReact === em ? ' reacted' : '';
+      return `<button class="react-btn${active}" onclick="addReaction(${c.id},'${em}')" title="${em}">
+        ${em}${cnt ? `<span class="react-cnt">${cnt}</span>` : ''}
+      </button>`;
+    }).join('');
+
+    const repliesHtml = (c.replies||[]).map(r => `
+      <div class="reply-item">
+        <div class="reply-avatar" style="background:${r.color}">${r.emoji}</div>
+        <div class="reply-content">
+          <span class="rname">${esc(r.name)}</span><span class="rtime">${timeAgo(r.ts)}</span>
+          <div class="rbody">${esc(r.text)}</div>
+        </div>
+      </div>`).join('');
+
+    const replyCount = (c.replies && c.replies.length) ? `(${c.replies.length})` : '';
+
+    return `<div class="citem" id="citem-${c.id}">
+      <div class="citem-head">
+        <div class="cavatar" style="background:${c.color}">${c.emoji}</div>
+        <span class="cname">${esc(c.name)}</span>
+        ${stars ? `<span class="cstars">${stars}</span>` : ''}
+        <span class="ctime">${timeAgo(c.ts)}</span>
+      </div>
+      <div class="cbody">${esc(c.text)}</div>
+
+      <div class="react-row">${reactBar}</div>
+
+      <div class="cactions">
+        <button class="act-btn${isLiked?' liked':''}" onclick="toggleLike(${c.id})">
+          ${isLiked?'❤️':'🤍'} ${c.likes}
+        </button>
+        <button class="act-btn reply-btn" onclick="toggleReplyForm(${c.id})">
+          ${t.replyBtn} ${replyCount}
+        </button>
+      </div>
+
+      <div class="reply-form-wrap" id="rf-${c.id}">
+        <div class="reply-row">
+          <input class="reply-input" placeholder="${t.replyPh}" maxlength="300"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();submitReply(${c.id})}">
+          <button class="reply-send" onclick="submitReply(${c.id})">${t.replySend}</button>
+        </div>
+      </div>
+
+      ${repliesHtml ? `<div class="replies-list">${repliesHtml}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  // Восстанавливаем состояние форм после ре-рендера
+  Object.entries(openForms).forEach(([cid, wasOpen]) => {
+    if (wasOpen) {
+      const wrap = document.getElementById('rf-'+cid);
+      if (wrap) {
+        wrap.classList.add('open');
+        const inp = wrap.querySelector('.reply-input');
+        if (inp && inputValues[cid]) inp.value = inputValues[cid];
+      }
+    }
+  });
+}
+
+/* ── INIT ───────────────────────────────────────────────── */
+/* ── CLEANUP: убираем дубли из localStorage которые могли
+   накопиться из старой версии сайта ──────────────────────── */
+function cleanupStorage() {
+  // Дедупликация комментариев по id
+  const comments = load('comments', []);
+  const seen = new Set();
+  const deduped = comments.filter(c => {
+    if (seen.has(c.id)) return false;
+    seen.add(c.id);
+    return true;
+  });
+  if (deduped.length !== comments.length) {
+    save('comments', deduped);
+  }
+
+  // Дедупликация массива оценок (удаляем значения вне диапазона 1-5)
+  const ratings = load('ratings', []);
+  const cleanRatings = ratings.filter(r => r >= 1 && r <= 5);
+  if (cleanRatings.length !== ratings.length) {
+    save('ratings', cleanRatings);
+  }
+}
+
+(function init() {
+  cleanupStorage(); // сначала чистим старый мусор
+  initStars();
+  initAvatarPicker();
+  const savedLang = load('lang', null);
+  if (savedLang) {
+    lang = savedLang;
+    // applyLang уже вызывает renderBars + renderComments внутри —
+    // НЕ вызываем их повторно снаружи (это и был источник дублей при рендере)
+    applyLang();
+    document.getElementById('lang-overlay').style.display = 'none';
+  } else {
+    // Язык ещё не выбран — рендерим без перевода
+    renderBars();
+    renderComments();
+  }
+  applyNameLock();
+})();
+</script>
+</body>
+</html>
